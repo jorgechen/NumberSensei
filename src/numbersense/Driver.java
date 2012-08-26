@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  * Compile in cmd, from the root project directory:
  *
  * javac src/numbersense/Driver.java  -sourcepath src -classpath bin -d bin
- * java -classpath bin numbersense.Driver "argument"
+ * java -classpath bin numbersense.Driver "filename.html"
  *
  * @author George Chen
  * @since 8/13/12 6:52 PM
@@ -21,10 +21,17 @@ import java.io.PrintWriter;
 public class Driver {
 
 	public static void main(String[] args) {
-		Exam exam = new Exam(new Level16(), Category.MULTIPLICATION_ALMOST_100);
+		String fileName = "test.html";
+		if (args.length > 0) {
+			fileName = args[0];
+		}
 
+		//Create the exam
+		Exam exam = new Exam(new Level16(), Category.MULTIPLICATION_BY_5);
+
+		//Save exam
 		String data = exam.toHTML();
-		String path = System.getProperty("user.dir") + File.separator + "test.html";
+		String path = System.getProperty("user.dir") + File.separator + fileName;
 		D.p("Saving exam to " + path);
 		saveToFile(data, path);
 	}

@@ -3,6 +3,9 @@ package numbersense.model;
 import numbersense.model.level.DifficultyLevel;
 import numbersense.model.question.Question;
 import numbersense.model.question.multiplication.MultiplicationAlmost100;
+import numbersense.model.question.multiplication.MultiplicationBy125;
+import numbersense.model.question.multiplication.MultiplicationBy25;
+import numbersense.model.question.multiplication.MultiplicationBy5;
 import numbersense.util.D;
 
 import java.nio.DoubleBuffer;
@@ -44,6 +47,7 @@ public class Exam {
 			Question q = createQuestion(level, category);
 			D.p(i + ". " + q.getDescription());
 			questions[i] = q;
+			//TODO optimize with pre-existing questions to avoid duplicates
 		}
 	}
 
@@ -53,7 +57,15 @@ public class Exam {
 		case MULTIPLICATION_ALMOST_100:
 			question = new MultiplicationAlmost100();
 			break;
-
+		case MULTIPLICATION_BY_5:
+			question = new MultiplicationBy5();
+			break;
+		case MULTIPLICATION_BY_25:
+			question = new MultiplicationBy25();
+			break;
+		case MULTIPLICATION_BY_125:
+			question = new MultiplicationBy125();
+			break;
 		//TODO add more categories
 		}
 

@@ -7,5 +7,9 @@ import java.util.Random;
  * @since 8/11/12 1:39 PM
  */
 public class Utility {
+	public static final String UNDERSCORES = "_____________________________________________________________" +
+											 "_____________________________________________________________";
+
+
 	public static final Random RNG = new Random();
 }
