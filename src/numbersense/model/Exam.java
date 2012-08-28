@@ -1,6 +1,7 @@
 package numbersense.model;
 
 import numbersense.model.level.DifficultyLevel;
+import numbersense.model.level.Level16;
 import numbersense.model.question.Question;
 import numbersense.model.question.multiplication.MultiplicationAlmost100;
 import numbersense.model.question.multiplication.MultiplicationBy125;
@@ -12,43 +13,45 @@ import java.nio.DoubleBuffer;
 
 /**
  * Each exam comprises a set of problems.
- *
+ * <p/>
  * Variable parameters:
  * - difficulty level
  * - number of questions
  * - categories of questions
- *
+ * <p/>
  * The exam should be flexible.
+ *
  * @author George Chen
  * @since 12/19/11 2:40 PM
  */
 public class Exam {
 	public static final int DEFAULT_COUNT_QUESTIONS = 20;
-	public static final int MAX_LENGTH_OF_QUESTION = 30;
+
 
 	private int countQuestions;
 	private Question[] questions;
 
-
-	public Exam(int countQuestions) {
-		D.p("Instantiated Exam(countQuestions=" + countQuestions + ")");
+	public Exam(int countQuestions, DifficultyLevel level, Category category) {
 		this.countQuestions = countQuestions;
 		questions = new Question[countQuestions];
-	}
-
-	public Exam() {
-		this(DEFAULT_COUNT_QUESTIONS);
-	}
-
-	public Exam(DifficultyLevel level, Category category) {
-		this();
 
 		for (int i = 0; i < countQuestions; i++) {
 			Question q = createQuestion(level, category);
 			D.p(i + ". " + q.getDescription());
 			questions[i] = q;
 			//TODO optimize with pre-existing questions to avoid duplicates
+			for (int j = 0; j < i; j++) {
+
+			}
 		}
+	}
+
+	public Exam(int countQuestions) {
+		this(countQuestions, new Level16(), Category.MULTIPLICATION_BY_5);
+	}
+
+	public Exam() {
+		this(DEFAULT_COUNT_QUESTIONS);
 	}
 
 	private Question createQuestion(DifficultyLevel level, Category category) {
@@ -87,19 +90,42 @@ public class Exam {
 			   + "\n</" + tagName + ">\n";
 	}
 
-	public String toHTML() {
+	/**
+	 * @param maxStringLengthPerQuestion
+	 * @return the entire exam in HTML format, numbered down 2 columns
+	 */
+	public String toHTML(int maxStringLengthPerQuestion) {
 		String html = "";
 
 		int half = countQuestions / 2;
 		for (int i = 0; i < half; i++) {
 			Question q1 = questions[i];
 			Question q2 = questions[half + i];
-			String d1 = q1.getDescription().toStringWithLength(MAX_LENGTH_OF_QUESTION);
-			String d2 = q2.getDescription().toStringWithLength(MAX_LENGTH_OF_QUESTION);
-			html += tag("tr", tag("td", d1) + tag("td", d2));
+			String d1 = q1.getDescription().toStringWithLength(maxStringLengthPerQuestion);
+			String d2 = q2.getDescription().toStringWithLength(maxStringLengthPerQuestion);
+
+			int n = i + 1;
+			html += tag("tr", tag("td", n + ". ")
+							  + tag("td", d1)
+							  + tag("td", (n + half) + ". ")
+							  + tag("td", d2));
 		}
 
-		html = tag("table", html, new String[]{"width='100%'"});
+		html = tag("table",
+				  html,
+				  new String[]{"width='100%'"});
 		return tag("html", html);
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < countQuestions; i++) {
+			Question q = questions[i];
+			String d = q.getDescription().toString();
+
+			s += d + "\n";
+		}
+		return s;
 	}
 }

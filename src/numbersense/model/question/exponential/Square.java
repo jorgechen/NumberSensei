@@ -1,10 +1,9 @@
 package numbersense.model.question.exponential;
 
-import com.mgeorgechen.numbersense.model.level.LevelVisitor;
-import com.mgeorgechen.numbersense.model.number.ANumber;
-import com.mgeorgechen.numbersense.model.number.WholeNumber;
-import com.mgeorgechen.numbersense.model.question.QuestionDescription;
-import numbersense.model.question.Question;
+import numbersense.model.Category;
+import numbersense.model.level.Level16;
+import numbersense.model.level.Level32;
+import numbersense.model.level.Level48;
 
 /**
  * @author George Chen
@@ -13,24 +12,19 @@ import numbersense.model.question.Question;
 public class Square extends Exponential {
 
 	@Override
-	public Question.Category getCategory() {
-		return Question.Category.EXPONENTIAL;
+	public Category getCategory() {
+		return Category.SQUARE; //TODO
 	}
 
-	@Override
-	public QuestionDescription getDescription() {
-		String question = base + "^" + exponent;
-		return new QuestionDescription(question);
+	public void visit(Level16 level) {
+		//TODO
 	}
 
-	@Override
-	public boolean solve(ANumber number) {
-		return answer.equalsExactly(number);
+	public void visit(Level32 level) {
+		//TODO
 	}
 
-	@Override
-	public void accept(LevelVisitor levelVisitor) {
-
-		answer = new WholeNumber(Math.round(Math.pow(base, exponent)));
+	public void visit(Level48 level) {
+		//TODO
 	}
 }
