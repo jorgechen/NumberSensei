@@ -22,4 +22,9 @@ public class Fraction extends ANumber {
 		}
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return numerator + "/" + denominator;
+	}
 }

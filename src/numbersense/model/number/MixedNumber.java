@@ -35,4 +35,9 @@ public class MixedNumber extends Fraction {
 		}
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return numerator + "/" + denominator;
+	}
 }

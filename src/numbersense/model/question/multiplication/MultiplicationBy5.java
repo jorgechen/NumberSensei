@@ -18,41 +18,11 @@ public class MultiplicationBy5 extends Multiplication {
 		return Category.MULTIPLICATION_BY_5;
 	}
 
-	public static int UPPER_BOUND_LEVEL_0 = 13;
-	public static int UPPER_BOUND_LEVEL_16 = 100;
-	public static int UPPER_BOUND_LEVEL_32 = 1000;
-	public static int UPPER_BOUND_LEVEL_48 = 10000;
-
-	/**
-	 * @param lower inclusive
-	 * @param upper exclusive
-	 */
+	@Override
 	protected void initialize(int lower, int upper) {
+		super.initialize(lower, upper);
 		b = 5;
-		a = Utility.RNG.nextInt(upper - lower) + lower;
 	}
 
-	/**
-	 * Filter easy multiplicands and make them harder.
-	 */
-	protected void filterEasies() {
-		for (int i = 10; i < 10000; i *= 10) {
-			if (a <= i * 10 && a % i == 0) {
-				a += Utility.RNG.nextInt(i);
-				break;
-			}
-		}
-	}
 
-	public void visit(Level16 level) {
-		initialize(UPPER_BOUND_LEVEL_0, UPPER_BOUND_LEVEL_16);
-	}
-
-	public void visit(Level32 level) {
-		initialize(UPPER_BOUND_LEVEL_16, UPPER_BOUND_LEVEL_32);
-	}
-
-	public void visit(Level48 level) {
-		initialize(UPPER_BOUND_LEVEL_32, UPPER_BOUND_LEVEL_48);
-	}
 }

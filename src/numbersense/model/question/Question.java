@@ -32,6 +32,11 @@ abstract public class Question implements QuestionVisitor {
 			return number.equalsExactly(new WholeNumber(4));
 		}
 
+		@Override
+		public ANumber getSolution() {
+			return new WholeNumber(4);
+		}
+
 		public void visit(Level16 level) {
 			//nothing
 		}
@@ -54,6 +59,10 @@ abstract public class Question implements QuestionVisitor {
 
 	abstract public QuestionDescription getDescription();
 
-	abstract public boolean solve(ANumber number);
+	public boolean solve(ANumber number) {
+		return number.equalsExactly(getSolution());
+	}
+
+	abstract public ANumber getSolution();
 
 }

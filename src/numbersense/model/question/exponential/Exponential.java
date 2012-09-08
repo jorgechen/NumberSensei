@@ -20,7 +20,7 @@ abstract public class Exponential extends Question {
 	}
 
 	@Override
-	public boolean solve(ANumber number) {
-		return (new WholeNumber(solution)).equalsExactly(number);
+	public ANumber getSolution() {
+		return new WholeNumber(solution);
 	}
 }

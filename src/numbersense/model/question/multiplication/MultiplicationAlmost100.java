@@ -39,7 +39,6 @@ public class MultiplicationAlmost100 extends Multiplication {
 	private void initialize(int bound) {
 		this.a = 99 - Utility.RNG.nextInt(100 - bound);
 		this.b = 99 - Utility.RNG.nextInt(100 - bound);
-		this.solution = this.a * this.b;
 	}
 
 	public static int LOWER_BOUND_LEVEL_16 = 95;

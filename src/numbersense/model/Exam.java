@@ -3,10 +3,8 @@ package numbersense.model;
 import numbersense.model.level.DifficultyLevel;
 import numbersense.model.level.Level16;
 import numbersense.model.question.Question;
-import numbersense.model.question.multiplication.MultiplicationAlmost100;
-import numbersense.model.question.multiplication.MultiplicationBy125;
-import numbersense.model.question.multiplication.MultiplicationBy25;
-import numbersense.model.question.multiplication.MultiplicationBy5;
+import numbersense.model.question.exponential.Square;
+import numbersense.model.question.multiplication.*;
 import numbersense.util.D;
 
 import java.nio.DoubleBuffer;
@@ -37,11 +35,9 @@ public class Exam {
 
 		for (int i = 0; i < countQuestions; i++) {
 			Question q = createQuestion(level, category);
-			D.p(i + ". " + q.getDescription());
 			questions[i] = q;
-			//TODO optimize with pre-existing questions to avoid duplicates
 			for (int j = 0; j < i; j++) {
-
+			//TODO optimize with pre-existing questions to avoid duplicates
 			}
 		}
 	}
@@ -60,8 +56,14 @@ public class Exam {
 		case MULTIPLICATION_ALMOST_100:
 			question = new MultiplicationAlmost100();
 			break;
+		case MULTIPLICATION_BY_11:
+			question = new MultiplicationBy11();
+			break;
 		case MULTIPLICATION_BY_5:
 			question = new MultiplicationBy5();
+			break;
+		case MULTIPLICATION_BY_50:
+			question = new MultiplicationBy50();
 			break;
 		case MULTIPLICATION_BY_25:
 			question = new MultiplicationBy25();
@@ -69,6 +71,10 @@ public class Exam {
 		case MULTIPLICATION_BY_125:
 			question = new MultiplicationBy125();
 			break;
+		case SQUARE:
+			question = new Square();
+			break;
+
 		//TODO add more categories
 		}
 
@@ -124,7 +130,19 @@ public class Exam {
 			Question q = questions[i];
 			String d = q.getDescription().toString();
 
-			s += d + "\n";
+			s += (i+1) + ". " + d + "\n";
+		}
+		return s;
+	}
+
+
+	public String toSolutionString() {
+		String s = "";
+		for (int i = 0; i < countQuestions; i++) {
+			Question q = questions[i];
+			String d = q.getSolution().toString();
+
+			s += (i+1) + ". " + d + "\n";
 		}
 		return s;
 	}
