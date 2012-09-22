@@ -41,10 +41,12 @@ public class Driver {
 //						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_125),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_125),
 
-						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_11),
-						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_11),
+						   new Exam(40, new Level16(), Category.MULTIPLICATION_BY_101),
+						   new Exam(40, new Level32(), Category.MULTIPLICATION_BY_101),
 
-						   new Exam(20, new Level16(), Category.SQUARE)
+						   new Exam(10, new Level16(), Category.MULTIPLICATION_BY_11),
+						   new Exam(10, new Level32(), Category.MULTIPLICATION_BY_11)
+
 			};
 
 			String filePrefix = "practice";

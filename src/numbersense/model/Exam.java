@@ -59,6 +59,9 @@ public class Exam {
 		case MULTIPLICATION_BY_11:
 			question = new MultiplicationBy11();
 			break;
+		case MULTIPLICATION_BY_101:
+			question = new MultiplicationBy101();
+			break;
 		case MULTIPLICATION_BY_5:
 			question = new MultiplicationBy5();
 			break;

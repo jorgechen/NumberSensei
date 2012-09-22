@@ -65,7 +65,6 @@ abstract public class Multiplication extends Question {
 
 	@Override
 	public ANumber getSolution() {
-		D.p("solution called " + a + "x" + b + "=" + (a * b));
 		return new WholeNumber(a * b);
 	}
 }
