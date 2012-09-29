@@ -1,41 +1,41 @@
 package numbersense.model.question.expression;
 
-import numbersense.model.level.Level16;
-import numbersense.model.level.Level32;
-import numbersense.model.level.Level48;
-import numbersense.model.number.ANumber;
-import numbersense.model.question.Question;
-import numbersense.model.question.QuestionDescription;
-
 /**
+ * Represents anything that results in a number: integer, operation, parenthetical operation
+ *
  * @author George Chen
- * @since 9/14/12 8:26 PM
+ * @since 9/28/12 8:07 PM
  */
-abstract public class Expression extends Question {
+abstract public class Expression {
 
-	// A binary tree represents
+	public static Expression NULL = new Expression() {
+		@Override
+		public int solve() {
+			return 0;
+		}
 
-	@Override
-	public QuestionDescription getDescription() {
+		@Override
+		public Expression getLeft() {
+			return null;
+		}
 
+		@Override
+		public Expression getRight() {
+			return null;
+		}
 
-		return null; //TODO
-	}
+		@Override
+		public String getDescription() {
+			return "";
+		}
 
-	@Override
-	public ANumber getSolution() {
-		return null; //TODO
-	}
+	};
 
-	public void visit(Level16 level) {
-		//TODO
-	}
+	abstract public int solve();
 
-	public void visit(Level32 level) {
-		//TODO
-	}
+	abstract public Expression getLeft();
 
-	public void visit(Level48 level) {
-		//TODO
-	}
+	abstract public Expression getRight();
+
+	abstract public String getDescription();
 }

@@ -4,7 +4,7 @@ import numbersense.model.Category;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
-import numbersense.util.Utility;
+import numbersense.utility.Randomizer;
 
 /**
  * @author George Chen
@@ -13,7 +13,7 @@ import numbersense.util.Utility;
 public class Square extends Exponential {
 
 	protected void initialize(int upperBound) {
-		base = Utility.RNG.nextInt(upperBound) + 1;
+		base = Randomizer.random1toN(upperBound);
 		exponent = 2;
 		solution = base * base;
 	}

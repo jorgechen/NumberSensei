@@ -1,13 +1,12 @@
 package numbersense.model;
 
+import numbersense.model.exam.Composition;
+import numbersense.model.exam.Rule;
 import numbersense.model.level.DifficultyLevel;
 import numbersense.model.level.Level16;
 import numbersense.model.question.Question;
 import numbersense.model.question.exponential.Square;
 import numbersense.model.question.multiplication.*;
-import numbersense.util.D;
-
-import java.nio.DoubleBuffer;
 
 /**
  * Each exam comprises a set of problems.
@@ -29,30 +28,50 @@ public class Exam {
 	private int countQuestions;
 	private Question[] questions;
 
+	public Exam(Composition composition) {
+
+
+		//Generate a series of questions based on the composition given
+		int i = 0;
+		while (i < composition.countRemainingRules()) {
+			Rule rule = composition.removeNextRandomRule();
+			Question newQuestion = createQuestion(rule.difficultyLevel, rule.category);
+			//TODO
+		}
+
+		//TODO give a proportional chance for each rule according to their proportion of problems in the composition
+	}
+
 	public Exam(int countQuestions, DifficultyLevel level, Category category) {
-		this.countQuestions = countQuestions;
+		this(countQuestions);
 		questions = new Question[countQuestions];
 
 		for (int i = 0; i < countQuestions; i++) {
 			Question q = createQuestion(level, category);
 			questions[i] = q;
 			for (int j = 0; j < i; j++) {
-			//TODO optimize with pre-existing questions to avoid duplicates
+				//TODO optimize with pre-existing questions to avoid duplicates
+
 			}
 		}
 	}
 
 	public Exam(int countQuestions) {
-		this(countQuestions, new Level16(), Category.MULTIPLICATION_BY_5);
+		this.countQuestions = countQuestions;
+
 	}
 
 	public Exam() {
 		this(DEFAULT_COUNT_QUESTIONS);
+		//TODO make a real practice test, randomly generated with different questions from 1-80
 	}
 
-	private Question createQuestion(DifficultyLevel level, Category category) {
+	public static Question createQuestion(DifficultyLevel level, Category category) {
 		Question question = Question.SAMPLE;
 		switch (category) {
+		case MULTIPLICATION_FOIL:
+			question = new MultiplicationFOIL();
+			break;
 		case MULTIPLICATION_ALMOST_100:
 			question = new MultiplicationAlmost100();
 			break;
@@ -77,6 +96,9 @@ public class Exam {
 		case SQUARE:
 			question = new Square();
 			break;
+		case ORDER_OF_OPERATION:
+			//TODO
+			break;
 
 		//TODO add more categories
 		}
@@ -85,11 +107,27 @@ public class Exam {
 		return question;
 	}
 
-	public String tag(String tagName, String content) {
+	/**
+	 * Takes a name and a tag, and returns <tag>name</tag>
+	 *
+	 * @param tagName
+	 * @param content
+	 * @return
+	 */
+	public static String tag(String tagName, String content) {
 		return tag(tagName, content, new String[]{});
 	}
 
-	public String tag(String tagName, String content, String[] attributes) {
+	/**
+	 * Takes a name, tag, and array of attributes, and returns <tag attributes>name</tag>
+	 * Assumes attributes is a list such as { width='100%', border='1'}
+	 *
+	 * @param tagName
+	 * @param content
+	 * @param attributes
+	 * @return
+	 */
+	public static String tag(String tagName, String content, String[] attributes) {
 		String s = "";
 		for (String attr : attributes) {
 			s += " " + attr;
@@ -101,7 +139,7 @@ public class Exam {
 
 	/**
 	 * @param maxStringLengthPerQuestion
-	 * @return the entire exam in HTML format, numbered down 2 columns
+	 * @return in HTML format, a numbered list of all questions, numbered down in 2 columns
 	 */
 	public String toHTML(int maxStringLengthPerQuestion) {
 		String html = "";
@@ -120,12 +158,16 @@ public class Exam {
 							  + tag("td", d2));
 		}
 
-		html = tag("table",
+		html = tag(
+				  "table",
 				  html,
 				  new String[]{"width='100%'"});
 		return tag("html", html);
 	}
 
+	/**
+	 * @return Text of a numbered list of all questions, one per line
+	 */
 	@Override
 	public String toString() {
 		String s = "";
@@ -133,20 +175,24 @@ public class Exam {
 			Question q = questions[i];
 			String d = q.getDescription().toString();
 
-			s += (i+1) + ". " + d + "\n";
+			s += (i + 1) + ". " + d + "\n";
 		}
 		return s;
 	}
 
-
+	/**
+	 * @return Text of a numbered list of all solutions, one per line
+	 */
 	public String toSolutionString() {
 		String s = "";
 		for (int i = 0; i < countQuestions; i++) {
 			Question q = questions[i];
 			String d = q.getSolution().toString();
 
-			s += (i+1) + ". " + d + "\n";
+			s += (i + 1) + ". " + d + "\n";
 		}
 		return s;
 	}
+
+
 }

@@ -2,9 +2,13 @@ package numbersense;
 
 import numbersense.model.Category;
 import numbersense.model.Exam;
+import numbersense.model.exam.Composition;
+import numbersense.model.exam.Rule;
+import numbersense.model.level.DifficultyLevel;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
-import numbersense.util.D;
+import numbersense.model.level.Level48;
+import numbersense.utility.Debugger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,12 +27,27 @@ public class Driver {
 	public static int MAX_LENGTH = 20;
 
 	public static void main(String[] args) {
-		if (args.length != 0) {
+		if (args.length > 0) {
 			initialize(args);
 		} else {
 			/////////////////////////
 			// Hard code
 			/////////////////////////
+
+			DifficultyLevel dl16 = new Level16();
+			DifficultyLevel dl32 = new Level32();
+			DifficultyLevel dl48 = new Level48();
+
+			Composition composition = new Composition(new Rule[]{
+																new Rule(Category.MULTIPLICATION_BY_5, dl16, 8),
+																new Rule(Category.MULTIPLICATION_BY_25, dl16, 8),
+																new Rule(Category.MULTIPLICATION_BY_11, dl16, 8),
+																new Rule(Category.MULTIPLICATION_BY_101, dl16, 8),
+																new Rule(Category.MULTIPLICATION_FOIL, dl16, 8)
+			});
+
+
+
 
 			Exam[] exams = {
 //						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_5),
@@ -41,29 +60,38 @@ public class Driver {
 //						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_125),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_125),
 
-						   new Exam(40, new Level16(), Category.MULTIPLICATION_BY_101),
-						   new Exam(40, new Level32(), Category.MULTIPLICATION_BY_101),
+						   new Exam(20, new Level16(), Category.MULTIPLICATION_FOIL),
+						   new Exam(20, new Level32(), Category.MULTIPLICATION_FOIL),
+						   new Exam(20, new Level48(), Category.MULTIPLICATION_FOIL),
 
-						   new Exam(10, new Level16(), Category.MULTIPLICATION_BY_11),
-						   new Exam(10, new Level32(), Category.MULTIPLICATION_BY_11)
-
+						   new Exam(composition)
 			};
 
-			String filePrefix = "practice";
+
+			String filePrefix = "practice_and_solution_";
 			String fileExtension = ".txt";
 
 			for (int i = 0; i < exams.length; i++) {
 				Exam exam = exams[i];
 
+				// Get questions
 				String data = exam.toString();
-				String path = System.getProperty("user.dir") + File.separator + filePrefix + i + fileExtension;
-				D.p("Saving exam to " + path);
-				saveToFile(data, path);
 
+				// Get solutions
 				String solution = exam.toSolutionString();
-				String pathSolution = path.replaceFirst("practice", "solution");
-				D.p("Saving answers to " + pathSolution);
-				saveToFile(solution, pathSolution);
+
+				// Make save path
+				String path = System.getProperty("user.dir") + File.separator + filePrefix + i + fileExtension;
+
+				// Save
+				Debugger.p("Saving exam to " + path);
+
+				String saveContent = data + "\n\n" + "Solutions\n" + solution;
+				saveToFile(saveContent, path);
+
+//				String pathSolution = path.replaceFirst("practice", "solution");
+//				Debugger.p("Saving answers to " + pathSolution);
+//				saveToFile(solution, pathSolution);
 
 			}
 
@@ -72,16 +100,15 @@ public class Driver {
 
 	public static void initialize(String[] args) {
 		String fileName = "test.html";
-		if (args.length > 0) {
-			fileName = args[0];
 
-			for (int i = 0; i < args.length; i++) {
+		fileName = args[0];
 
-			}
+		for (int i = 0; i < args.length; i++) {
+
 		}
 
 
-		//TODO
+		//TODO parse command line arguments
 	}
 
 

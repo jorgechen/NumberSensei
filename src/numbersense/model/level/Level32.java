@@ -10,4 +10,9 @@ public class Level32 implements DifficultyLevel {
 	public void accept(QuestionVisitor visitor) {
 		visitor.visit(this);
 	}
+
+	@Override
+	public String toString() {
+		return "Level32";
+	}
 }

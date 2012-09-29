@@ -1,7 +1,6 @@
 package numbersense.model.question.multiplication;
 
 import numbersense.model.Category;
-import numbersense.util.Utility;
 
 /**
  * @author George Chen

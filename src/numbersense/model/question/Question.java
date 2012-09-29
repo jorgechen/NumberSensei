@@ -65,4 +65,6 @@ abstract public class Question implements QuestionVisitor {
 
 	abstract public ANumber getSolution();
 
+	//TODO
+//	abstract public boolean isEqual(Question otherQuestion);
 }

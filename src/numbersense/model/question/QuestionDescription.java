@@ -1,6 +1,6 @@
 package numbersense.model.question;
 
-import numbersense.util.Utility;
+import numbersense.utility.Constants;
 
 /**
  * Format of a problem description:
@@ -46,7 +46,7 @@ public class QuestionDescription {
 		int blankLength = stringLength - questionLength - appendixLength;
 		String blank;
 		if (blankLength > 2) {
-			blank = Utility.UNDERSCORES.substring(0, blankLength);
+			blank = Constants.UNDERSCORES.substring(0, blankLength);
 		}
 		else {
 			blank = "_";

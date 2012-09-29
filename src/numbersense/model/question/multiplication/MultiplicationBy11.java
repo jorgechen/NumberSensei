@@ -6,7 +6,7 @@ import numbersense.model.Category;
  * @author George Chen
  * @since 9/7/12 5:58 PM
  */
-public class MultiplicationBy11 extends Multiplication {
+public class MultiplicationBy11 extends MultiplicationBy5 {
 
 	@Override
 	public Category getCategory() {

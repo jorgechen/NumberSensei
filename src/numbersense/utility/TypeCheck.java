@@ -1,4 +1,4 @@
-package numbersense.util;
+package numbersense.utility;
 
 /**
  *
