@@ -29,15 +29,19 @@ public class Exam {
 	private Question[] questions;
 
 	public Exam(Composition composition) {
-
+		this(composition.countRemainingRules());
 
 		//Generate a series of questions based on the composition given
 		int i = 0;
-		while (i < composition.countRemainingRules()) {
+		while (0 < composition.countRemainingRules()) {
 			Rule rule = composition.removeNextRandomRule();
 			Question newQuestion = createQuestion(rule.difficultyLevel, rule.category);
-			//TODO
+
+			this.questions[i] = newQuestion;
+			i++;
 		}
+
+		replaceDuplicates(questions);
 
 		//TODO give a proportional chance for each rule according to their proportion of problems in the composition
 	}
@@ -49,21 +53,24 @@ public class Exam {
 		for (int i = 0; i < countQuestions; i++) {
 			Question q = createQuestion(level, category);
 			questions[i] = q;
-			for (int j = 0; j < i; j++) {
-				//TODO optimize with pre-existing questions to avoid duplicates
-
-			}
 		}
+
+		replaceDuplicates(questions);
 	}
 
 	public Exam(int countQuestions) {
 		this.countQuestions = countQuestions;
-
+		this.questions = new Question[countQuestions];
 	}
 
 	public Exam() {
 		this(DEFAULT_COUNT_QUESTIONS);
 		//TODO make a real practice test, randomly generated with different questions from 1-80
+	}
+
+	public static void replaceDuplicates(Question[] questions) {
+
+		//TODO optimize with pre-existing questions to avoid duplicates
 	}
 
 	public static Question createQuestion(DifficultyLevel level, Category category) {

@@ -20,6 +20,7 @@ public class Composition {
 	 */
 	public Composition(Rule[] rules) {
 		this.rules = new ArrayList<Rule>();
+		this.forbiddenRules = new HashSet<Rule>();
 
 		for (Rule r : rules) {
 			this.rules.add(r);
