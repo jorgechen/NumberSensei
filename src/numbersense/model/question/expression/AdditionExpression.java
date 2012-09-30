@@ -22,16 +22,21 @@ public class AdditionExpression extends Expression {
 
 	@Override
 	public Expression getLeft() {
-		return Expression.NULL;
+		return Expression.NONE;
 	}
 
 	@Override
 	public Expression getRight() {
-		return Expression.NULL;
+		return Expression.NONE;
 	}
 
 	@Override
 	public String getDescription() {
 		return left + Constants.SPACE + Constants.PLUS + Constants.SPACE + right;
+	}
+
+	@Override
+	public Expression copy() {
+		return new AdditionExpression(left, right);
 	}
 }

@@ -1,5 +1,8 @@
 package numbersense.model.question.expression;
 
+import numbersense.utility.Constants;
+import numbersense.utility.Randomizer;
+
 /**
  * Represents anything that results in a number: integer, operation, parenthetical operation
  *
@@ -8,7 +11,7 @@ package numbersense.model.question.expression;
  */
 abstract public class Expression {
 
-	public static Expression NULL = new Expression() {
+	public static Expression NONE = new Expression() {
 		@Override
 		public int solve() {
 			return 0;
@@ -29,6 +32,11 @@ abstract public class Expression {
 			return "";
 		}
 
+		@Override
+		public Expression copy() {
+			return this;
+		}
+
 	};
 
 	abstract public int solve();
@@ -38,4 +46,40 @@ abstract public class Expression {
 	abstract public Expression getRight();
 
 	abstract public String getDescription();
+
+	abstract public Expression copy();
+
+	private static final int X = Constants.ZERO;
+	public static final Expression[] POOL = new Expression[]{
+															new AdditionExpression(X, X),
+															new SubtractionExpression(X, X),
+															new MultiplicationExpression(X, X),
+															new DivisionExpression(X, X)
+	};
+
+
+	public static Expression randomExpression() {
+		int random = Randomizer.random(POOL.length);
+		return POOL[random].copy();
+	}
+
+	public void initialize(int countOperations, int countParentheses) {
+		if (countOperations == 1) {
+			//Randomly pick left or right
+			if (Randomizer.coinFlip()) {
+				//TODO
+			} else {
+
+			}
+		} else if (countOperations == 2) {
+			//Generate left expression
+			Expression left = randomExpression();
+
+			//Generate right expression
+			Expression right = randomExpression();
+
+		} else {
+
+		}
+	}
 }

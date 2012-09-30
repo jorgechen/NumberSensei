@@ -75,8 +75,11 @@ public class Driver {
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_125),
 
 						   new Exam(20, new Level16(), Category.MULTIPLICATION_FOIL),
+						   new Exam(20, new Level16(), Category.SQUARE),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_FOIL),
 //						   new Exam(20, new Level48(), Category.MULTIPLICATION_FOIL),
+
+
 
 						   new Exam(composition16),
 						   new Exam(composition32),

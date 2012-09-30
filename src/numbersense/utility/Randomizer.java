@@ -33,4 +33,11 @@ public class Randomizer {
 	public static int random1toN(int n) {
 		return INSTANCE.nextInt(n) + 1;
 	}
+
+	/**
+	 * @return true for heads, false for tails, or vice versa
+	 */
+	public static boolean coinFlip() {
+		return INSTANCE.nextInt(1) == 0;
+	}
 }

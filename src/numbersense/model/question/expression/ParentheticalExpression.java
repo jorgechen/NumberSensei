@@ -25,11 +25,16 @@ public class ParentheticalExpression extends Expression {
 
 	@Override
 	public Expression getRight() {
-		return Expression.NULL;
+		return Expression.NONE;
 	}
 
 	@Override
 	public String getDescription() {
 		return Constants.LEFT_PARENTHESIS + only.getDescription() + Constants.RIGHT_PARENTHESIS;
+	}
+
+	@Override
+	public Expression copy() {
+		return new ParentheticalExpression(only.copy());
 	}
 }

@@ -29,4 +29,5 @@ public class Constants {
 
 	final public static double DECIMAL_ERROR = 0.001;
 	final public static double ERROR_DEVIATION = 0.05;
+	final public static int ZERO = 0;
 }

@@ -26,9 +26,9 @@ abstract public class OrderOfOperation extends Question {
 		return new WholeNumber(expression.solve());
 	}
 
-
 	// 2 operations with small numbers
 	public void visit(Level16 level) {
+
 		//TODO
 	}
 
