@@ -53,7 +53,6 @@ abstract public class Question implements QuestionVisitor {
 	////////////
 	// Members
 	////////////
-	private ANumber answer;
 
 	abstract public Category getCategory();
 

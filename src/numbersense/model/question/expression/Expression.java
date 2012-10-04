@@ -60,25 +60,25 @@ abstract public class Expression {
 
 	public static Expression randomExpression() {
 		int random = Randomizer.random(POOL.length);
-		return POOL[random].copy();
+		Expression expression = POOL[random].copy();
+		return expression;
 	}
 
 	public void initialize(int countOperations, int countParentheses) {
 		if (countOperations == 1) {
 			//Randomly pick left or right
 			if (Randomizer.coinFlip()) {
+
 				//TODO
 			} else {
 
 			}
-		} else if (countOperations == 2) {
+		} else if (countOperations > 1) {
 			//Generate left expression
 			Expression left = randomExpression();
 
 			//Generate right expression
 			Expression right = randomExpression();
-
-		} else {
 
 		}
 	}
