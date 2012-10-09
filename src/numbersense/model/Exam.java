@@ -2,19 +2,20 @@ package numbersense.model;
 
 import numbersense.model.exam.Composition;
 import numbersense.model.exam.Rule;
+import numbersense.model.expression.Expression;
+import numbersense.model.expression.expression.OrderOfOperation;
+import numbersense.model.expression.number.WholeNumber;
 import numbersense.model.level.DifficultyLevel;
-import numbersense.model.level.Level16;
-import numbersense.model.question.Question;
-import numbersense.model.question.exponential.Square;
-import numbersense.model.question.multiplication.*;
+import numbersense.question.exponential.Square;
+import numbersense.question.multiplication.*;
 
 /**
  * Each exam comprises a set of problems.
  * <p/>
  * Variable parameters:
  * - difficulty level
- * - number of questions
- * - categories of questions
+ * - number of expressions
+ * - categories of expressions
  * <p/>
  * The exam should be flexible.
  *
@@ -26,92 +27,95 @@ public class Exam {
 
 
 	private int countQuestions;
-	private Question[] questions;
+	private Expression[] expressions;
 
 	public Exam(Composition composition) {
 		this(composition.countRemainingRules());
 
-		//Generate a series of questions based on the composition given
+		//Generate a series of expressions based on the composition given
 		int i = 0;
 		while (0 < composition.countRemainingRules()) {
 			Rule rule = composition.removeNextRandomRule();
-			Question newQuestion = createQuestion(rule.difficultyLevel, rule.category);
+			Expression newExpression = createQuestion(rule.difficultyLevel, rule.category);
 
-			this.questions[i] = newQuestion;
+			this.expressions[i] = newExpression;
 			i++;
 		}
 
-		replaceDuplicates(questions);
+		replaceDuplicates(expressions);
 
 		//TODO give a proportional chance for each rule according to their proportion of problems in the composition
 	}
 
 	public Exam(int countQuestions, DifficultyLevel level, Category category) {
 		this(countQuestions);
-		questions = new Question[countQuestions];
+		expressions = new Expression[countQuestions];
 
 		for (int i = 0; i < countQuestions; i++) {
-			Question q = createQuestion(level, category);
-			questions[i] = q;
+			Expression q = createQuestion(level, category);
+			expressions[i] = q;
 		}
 
-		replaceDuplicates(questions);
+		replaceDuplicates(expressions);
 	}
 
 	public Exam(int countQuestions) {
 		this.countQuestions = countQuestions;
-		this.questions = new Question[countQuestions];
+		this.expressions = new Expression[countQuestions];
 	}
 
 	public Exam() {
 		this(DEFAULT_COUNT_QUESTIONS);
-		//TODO make a real practice test, randomly generated with different questions from 1-80
+		//TODO make a real practice test, randomly generated with different expressions from 1-80
 	}
 
-	public static void replaceDuplicates(Question[] questions) {
+	public static void replaceDuplicates(Expression[] expressions) {
 
-		//TODO optimize with pre-existing questions to avoid duplicates
+		//TODO optimize with pre-existing expressions to avoid duplicates
 	}
 
-	public static Question createQuestion(DifficultyLevel level, Category category) {
-		Question question = Question.SAMPLE;
+	public static Expression createQuestion(DifficultyLevel level, Category category) {
+		Expression expression;
 		switch (category) {
 		case MULTIPLICATION_FOIL:
-			question = new MultiplicationFOIL();
+			expression = new MultiplicationFOIL();
 			break;
 		case MULTIPLICATION_ALMOST_100:
-			question = new MultiplicationAlmost100();
+			expression = new MultiplicationAlmost100();
 			break;
 		case MULTIPLICATION_BY_11:
-			question = new MultiplicationBy11();
+			expression = new MultiplicationBy11();
 			break;
 		case MULTIPLICATION_BY_101:
-			question = new MultiplicationBy101();
+			expression = new MultiplicationBy101();
 			break;
 		case MULTIPLICATION_BY_5:
-			question = new MultiplicationBy5();
+			expression = new MultiplicationBy5();
 			break;
 		case MULTIPLICATION_BY_50:
-			question = new MultiplicationBy50();
+			expression = new MultiplicationBy50();
 			break;
 		case MULTIPLICATION_BY_25:
-			question = new MultiplicationBy25();
+			expression = new MultiplicationBy25();
 			break;
 		case MULTIPLICATION_BY_125:
-			question = new MultiplicationBy125();
+			expression = new MultiplicationBy125();
 			break;
 		case SQUARE:
-			question = new Square();
+			expression = new Square();
 			break;
 		case ORDER_OF_OPERATION:
-			//TODO
+			expression = new OrderOfOperation();
 			break;
-
+		case NOT_A_TRICK:
+		default:
+			expression = WholeNumber.ZERO;
+			break;
 		//TODO add more categories
 		}
 
-		level.accept(question); // Gets the
-		return question;
+		level.accept(expression); // Gets the
+		return expression;
 	}
 
 	/**
@@ -146,15 +150,15 @@ public class Exam {
 
 	/**
 	 * @param maxStringLengthPerQuestion
-	 * @return in HTML format, a numbered list of all questions, numbered down in 2 columns
+	 * @return in HTML format, a numbered list of all expressions, numbered down in 2 columns
 	 */
 	public String toHTML(int maxStringLengthPerQuestion) {
 		String html = "";
 
 		int half = countQuestions / 2;
 		for (int i = 0; i < half; i++) {
-			Question q1 = questions[i];
-			Question q2 = questions[half + i];
+			Expression q1 = expressions[i];
+			Expression q2 = expressions[half + i];
 			String d1 = q1.getDescription().toStringWithLength(maxStringLengthPerQuestion);
 			String d2 = q2.getDescription().toStringWithLength(maxStringLengthPerQuestion);
 
@@ -173,13 +177,13 @@ public class Exam {
 	}
 
 	/**
-	 * @return Text of a numbered list of all questions, one per line
+	 * @return Text of a numbered list of all expressions, one per line
 	 */
 	@Override
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < countQuestions; i++) {
-			Question q = questions[i];
+			Expression q = expressions[i];
 			String d = q.getDescription().toString();
 
 			s += (i + 1) + ". " + d + "\n";
@@ -193,8 +197,8 @@ public class Exam {
 	public String toSolutionString() {
 		String s = "";
 		for (int i = 0; i < countQuestions; i++) {
-			Question q = questions[i];
-			String d = q.getSolution().toString();
+			Expression q = expressions[i];
+			String d = q.evaluate().toString();
 
 			s += (i + 1) + ". " + d + "\n";
 		}

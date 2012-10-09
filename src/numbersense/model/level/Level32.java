@@ -1,13 +1,13 @@
 package numbersense.model.level;
 
-import numbersense.model.question.QuestionVisitor;
+import numbersense.question.QuestionCreatingVisitor;
 
 /**
  * @author George Chen
  * @since 8/11/12 2:46 PM
  */
 public class Level32 implements DifficultyLevel {
-	public void accept(QuestionVisitor visitor) {
+	public void accept(QuestionCreatingVisitor visitor) {
 		visitor.visit(this);
 	}
 

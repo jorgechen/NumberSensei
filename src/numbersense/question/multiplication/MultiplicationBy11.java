@@ -1,20 +1,21 @@
-package numbersense.model.question.multiplication;
+package numbersense.question.multiplication;
 
 import numbersense.model.Category;
 
 /**
  * @author George Chen
- * @since 8/25/12 6:23 PM
+ * @since 9/7/12 5:58 PM
  */
-public class MultiplicationBy125 extends MultiplicationBy5 {
+public class MultiplicationBy11 extends MultiplicationBy5 {
+
 	@Override
 	public Category getCategory() {
-		return Category.MULTIPLICATION_BY_125;
+		return Category.MULTIPLICATION_BY_11;
 	}
 
 	@Override
 	protected void initialize(int lower, int upper) {
 		super.initialize(lower, upper);
-		b = 125;
+		right = 11;
 	}
 }

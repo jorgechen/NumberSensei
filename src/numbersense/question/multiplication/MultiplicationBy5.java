@@ -1,17 +1,17 @@
-package numbersense.model.question.multiplication;
+package numbersense.question.multiplication;
 
 import numbersense.model.Category;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
-import numbersense.utility.Tweak;
 import numbersense.utility.Randomizer;
+import numbersense.utility.Tweak;
 
 /**
  * @author George Chen
  * @since 8/23/12 9:04 PM
  */
-public class MultiplicationBy5 extends Multiplication {
+public class MultiplicationBy5  {
 
 	@Override
 	public Category getCategory() {
@@ -41,9 +41,9 @@ public class MultiplicationBy5 extends Multiplication {
 	 * @param upper exclusive
 	 */
 	protected void initialize(int lower, int upper) {
-		a = Randomizer.random(lower, upper);
-		a = Tweak.filterMultiplesOf10(a);
-		b = 5;
+		left = Randomizer.random(lower, upper);
+		left = Tweak.filterMultiplesOf10(left);
+		right = 5;
 	}
 
 

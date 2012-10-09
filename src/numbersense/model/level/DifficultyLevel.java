@@ -1,12 +1,12 @@
 package numbersense.model.level;
 
 
-import numbersense.model.question.QuestionVisitor;
+import numbersense.question.QuestionCreatingVisitor;
 
 /**
  * @author George Chen
  * @since 12/19/11 4:44 PM
  */
 public interface DifficultyLevel {
-	void accept(QuestionVisitor visitor);
+	void accept(QuestionCreatingVisitor visitor);
 }

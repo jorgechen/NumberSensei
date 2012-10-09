@@ -1,4 +1,4 @@
-package numbersense.model.question;
+package numbersense.question;
 
 import numbersense.utility.Constants;
 

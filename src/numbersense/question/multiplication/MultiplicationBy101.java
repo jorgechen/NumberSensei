@@ -1,25 +1,20 @@
-package numbersense.model.question.multiplication;
+package numbersense.question.multiplication;
 
 import numbersense.model.Category;
 
 /**
  * @author George Chen
- * @since 8/25/12 5:42 PM
+ * @since 9/14/12 8:32 PM
  */
-public class MultiplicationBy25 extends MultiplicationBy5 {
-
+public class MultiplicationBy101 extends MultiplicationBy5 {
 	@Override
 	public Category getCategory() {
-		return Category.MULTIPLICATION_BY_25;
+		return Category.MULTIPLICATION_BY_101;
 	}
 
 	@Override
 	protected void initialize(int lower, int upper) {
 		super.initialize(lower, upper);
-		b = 25;
-
-		if (a == 25) {
-			a = 18;
-		}
+		right = 101;
 	}
 }

@@ -6,11 +6,12 @@ package numbersense.model;
  */
 
 public enum Category {
-	SAMPLE,
+	NOT_A_TRICK,
 	ORDER_OF_OPERATION,
 	EXPONENTIAL,
 	SQUARE,
 	CUBE,
+	MULTIPLICATION,
 	MULTIPLICATION_FOIL,
 	MULTIPLICATION_ALMOST_100,
 	MULTIPLICATION_BY_11,
@@ -21,7 +22,7 @@ public enum Category {
 	MULTIPLICATION_BY_125;
 
 	public Category convertFrom(String s) {
-		Category e = SAMPLE;
+		Category e = NOT_A_TRICK;
 		if (s == null || s.length() == 0) {
 
 		} else if (s.equalsIgnoreCase("MultiplicationBy5")) {

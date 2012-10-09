@@ -1,4 +1,4 @@
-package numbersense.model.question;
+package numbersense.question;
 
 /**
  * @author George Chen
@@ -9,7 +9,7 @@ import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
 
-public interface QuestionVisitor {
+public interface QuestionCreatingVisitor {
 	void visit(Level16 level);
 	void visit(Level32 level);
 	void visit(Level48 level);

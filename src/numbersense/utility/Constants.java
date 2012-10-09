@@ -17,11 +17,14 @@ public class Constants {
 	public static final String DIVIDE = "/";
 	public static final String PLUS = "+";
 	public static final String MINUS = "-";
-
 	public static final String LEFT_PARENTHESIS = "(";
 	public static final String RIGHT_PARENTHESIS = ")";
 
 	public static final String SPACE = " ";
+	public static final String EQUAL = "=";
+	public static final String EMPTY = "";
+
+
 
 	///////////////////////////////////////////////////////////////////////
 	// Numbers

@@ -1,6 +1,7 @@
-package numbersense.model.question.multiplication;
+package numbersense.question.multiplication;
 
 import numbersense.model.Category;
+import numbersense.model.expression.Multiplication;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
@@ -23,8 +24,8 @@ public class MultiplicationFOIL extends Multiplication {
 	public static int MARKER_D = 100;
 
 	protected void initialize(int lower, int upper) {
-		a = Randomizer.random(lower, upper);
-		b = Randomizer.random(lower, upper);
+		left = Randomizer.random(lower, upper);
+		right = Randomizer.random(lower, upper);
 	}
 
 

@@ -1,4 +1,4 @@
-package numbersense.model.question.multiplication;
+package numbersense.question.multiplication;
 
 /**
  * @author George Chen
@@ -9,7 +9,7 @@ public class MultiplicationBy50 extends MultiplicationBy5{
 	@Override
 	protected void initialize(int lower, int upper) {
 		super.initialize(lower, upper);
-		b = 50;
+		right = 50;
 	}
 
 }
