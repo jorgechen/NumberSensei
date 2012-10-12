@@ -3,11 +3,11 @@ package numbersense.model;
 import numbersense.model.exam.Composition;
 import numbersense.model.exam.Rule;
 import numbersense.model.expression.Expression;
-import numbersense.model.expression.expression.OrderOfOperation;
 import numbersense.model.expression.number.WholeNumber;
 import numbersense.model.level.DifficultyLevel;
 import numbersense.question.exponential.Square;
 import numbersense.question.multiplication.*;
+import numbersense.question.other.OrderOfOperation;
 
 /**
  * Each exam comprises a set of problems.

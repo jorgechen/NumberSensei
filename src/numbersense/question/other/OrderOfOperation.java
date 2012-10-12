@@ -1,4 +1,4 @@
-package numbersense.model.expression.expression;
+package numbersense.question.other;
 
 import numbersense.model.Category;
 import numbersense.model.expression.Expression;
@@ -6,13 +6,16 @@ import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
+import numbersense.question.Question;
 import numbersense.question.QuestionDescription;
 
 /**
  * @author George Chen
  * @since 9/14/12 8:26 PM
  */
-public class OrderOfOperation extends Expression {
+public class OrderOfOperation extends Question {
+
+	Expression expression;
 
 	@Override
 	public Category getCategory() {
@@ -20,28 +23,17 @@ public class OrderOfOperation extends Expression {
 	}
 
 	@Override
+	public NumberExpression getSolution() {
+		return null; //TODO
+	}
+
+	@Override
 	public QuestionDescription getDescription() {
 		return null; //TODO
 	}
 
-	@Override
-	public Expression getLeft() {
-		return null; //TODO
-	}
-
-	@Override
-	public Expression getRight() {
-		return null; //TODO
-	}
-
-	@Override
-	public Expression copy() {
-		return null; //TODO
-	}
-
-	@Override
-	public NumberExpression evaluate() {
-		return null; //TODO
+	private void initialize() {
+		//TODO
 	}
 
 	// 2 operations with small numbers

@@ -2,12 +2,14 @@ package numbersense.question.multiplication;
 
 
 import numbersense.model.Category;
-import numbersense.model.expression.Expression;
+import numbersense.model.expression.Multiplication;
+import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.expression.number.WholeNumber;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
 import numbersense.question.Question;
+import numbersense.question.QuestionDescription;
 import numbersense.utility.Randomizer;
 
 /**
@@ -33,10 +35,7 @@ e)      The answer is 8184.
  * @since 12/24/11 3:13 PM
  */
 public class MultiplicationAlmost100 extends Question {
-
-	public MultiplicationAlmost100(Expression left, Expression right) {
-		super(left, right);
-	}
+	Multiplication expression;
 
 	@Override
 	public Category getCategory() {
@@ -44,13 +43,19 @@ public class MultiplicationAlmost100 extends Question {
 	}
 
 	@Override
-	public Expression copy() {
-		return super.copy(); //TODO
+	public NumberExpression getSolution() {
+		return expression.evaluate();
+	}
+
+	@Override
+	public QuestionDescription getDescription() {
+		return new QuestionDescription(expression.toString());
 	}
 
 	private void initialize(int bound) {
-		this.left = new WholeNumber(99 - Randomizer.random(100 - bound));
-		this.right = new WholeNumber(99 - Randomizer.random(100 - bound));
+		WholeNumber left = new WholeNumber(99 - Randomizer.random(100 - bound));
+		WholeNumber right = new WholeNumber(99 - Randomizer.random(100 - bound));
+		expression = new Multiplication(left, right);
 	}
 
 	public static int LOWER_BOUND_LEVEL_16 = 95;

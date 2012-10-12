@@ -10,7 +10,7 @@ public class Convert {
 		return number + Constants.EMPTY;
 	}
 
-	public static String toString(double decimal) {
+	public static String toString(float decimal) {
 		return decimal + Constants.EMPTY;
 	}
 }

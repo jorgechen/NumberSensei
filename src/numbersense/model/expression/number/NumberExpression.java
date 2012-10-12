@@ -8,15 +8,17 @@ import numbersense.model.expression.Expression;
  * @author George Chen
  * @since 12/23/11 12:59 PM
  */
-abstract public class NumberExpression extends Expression {
+abstract public class NumberExpression extends Expression implements NumberOperator {
 
-	/**
-	 * Compares equality between any number wrapper objects
-	 *
-	 * @param number
-	 * @return
-	 */
 	abstract public boolean equalsExactly(NumberExpression number);
+
+	abstract public Decimal convertToDecimal();
+
+	abstract public WholeNumber convertToWholeNumber();
+
+	abstract public Fraction convertToFraction();
+
+	abstract public MixedNumber convertToMixedNumber();
 
 	@Override
 	public Expression getLeft() {
@@ -31,5 +33,61 @@ abstract public class NumberExpression extends Expression {
 	@Override
 	public NumberExpression evaluate() {
 		return this;
+	}
+
+	public NumberExpression add(NumberExpression other) {
+		NumberExpression e = null;
+		if (other instanceof WholeNumber) {
+			e = add((WholeNumber) other);
+		} else if (other instanceof Decimal) {
+			e = add((Decimal) other);
+		} else if (other instanceof Fraction) {
+			e = add((Fraction) other);
+		} else if (other instanceof MixedNumber) {
+			e = add((MixedNumber) other);
+		}
+		return e;
+	}
+
+	public NumberExpression subtract(NumberExpression other) {
+		NumberExpression e = null;
+		if (other instanceof WholeNumber) {
+			e = subtract((WholeNumber) other);
+		} else if (other instanceof Decimal) {
+			e = subtract((Decimal) other);
+		} else if (other instanceof Fraction) {
+			e = subtract((Fraction) other);
+		} else if (other instanceof MixedNumber) {
+			e = subtract((MixedNumber) other);
+		}
+		return e;
+	}
+
+	public NumberExpression multiply(NumberExpression other) {
+		NumberExpression e = null;
+		if (other instanceof WholeNumber) {
+			e = multiply((WholeNumber) other);
+		} else if (other instanceof Decimal) {
+			e = multiply((Decimal) other);
+		} else if (other instanceof Fraction) {
+			e = multiply((Fraction) other);
+		} else if (other instanceof MixedNumber) {
+			e = multiply((MixedNumber) other);
+		}
+		return e;
+	}
+
+	public NumberExpression divide(NumberExpression other) {
+		NumberExpression e = null;
+		if (other instanceof WholeNumber) {
+			e = divide((WholeNumber) other);
+		} else if (other instanceof Decimal) {
+			e = divide((Decimal) other);
+		} else if (other instanceof Fraction) {
+			e = divide((Fraction) other);
+		} else if (other instanceof MixedNumber) {
+			e = divide((MixedNumber) other);
+		}
+		return e;
 	}
 }

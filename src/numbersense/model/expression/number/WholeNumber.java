@@ -34,6 +34,26 @@ public class WholeNumber extends NumberExpression {
 	}
 
 	@Override
+	public Decimal convertToDecimal() {
+		return null; //TODO
+	}
+
+	@Override
+	public WholeNumber convertToWholeNumber() {
+		return null; //TODO
+	}
+
+	@Override
+	public Fraction convertToFraction() {
+		return null; //TODO
+	}
+
+	@Override
+	public MixedNumber convertToMixedNumber() {
+		return null; //TODO
+	}
+
+	@Override
 	public String toString() {
 		return Convert.toString(value);
 	}
@@ -53,8 +73,84 @@ public class WholeNumber extends NumberExpression {
 		return null; //TODO
 	}
 
+	public NumberExpression subtract(NumberExpression other) {
+		return null; //TODO
+	}
+
+	public NumberExpression multiply(NumberExpression other) {
+		return null; //TODO
+	}
+
+	public NumberExpression divide(NumberExpression other) {
+		return null; //TODO
+	}
+
 	@Override
 	public Expression copy() {
 		return new WholeNumber(value);
+	}
+
+	public NumberExpression add(WholeNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression subtract(WholeNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression multiply(WholeNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression divide(WholeNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression add(Fraction other) {
+		return null; //TODO
+	}
+
+	public NumberExpression subtract(Fraction other) {
+		return null; //TODO
+	}
+
+	public NumberExpression multiply(Fraction other) {
+		return null; //TODO
+	}
+
+	public NumberExpression divide(Fraction other) {
+		return null; //TODO
+	}
+
+	public NumberExpression add(Decimal other) {
+		return null; //TODO
+	}
+
+	public NumberExpression subtract(Decimal other) {
+		return null; //TODO
+	}
+
+	public NumberExpression multiply(Decimal other) {
+		return null; //TODO
+	}
+
+	public NumberExpression divide(Decimal other) {
+		return null; //TODO
+	}
+
+	public NumberExpression add(MixedNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression subtract(MixedNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression multiply(MixedNumber other) {
+		return null; //TODO
+	}
+
+	public NumberExpression divide(MixedNumber other) {
+		return null; //TODO
 	}
 }

@@ -8,13 +8,13 @@ import numbersense.utility.Convert;
  * @since 12/20/11 12:59 PM
  */
 public class Decimal extends NumberExpression {
-	public double value;
+	public float value;
 
-	public double getValue() {
+	public float getValue() {
 		return value;
 	}
 
-	public Decimal(double value) {
+	public Decimal(float value) {
 		this.value = value;
 	}
 
@@ -28,6 +28,31 @@ public class Decimal extends NumberExpression {
 	}
 
 	@Override
+	public Decimal convertToDecimal() {
+		return (Decimal) this.copy();
+	}
+
+	//Note: decimal is truncated!
+	@Override
+	public WholeNumber convertToWholeNumber() {
+		return new WholeNumber((int)value);
+	}
+
+	private static int BASIC = 1000;
+	@Override
+	public Fraction convertToFraction() {
+		//TODO optimize this
+		//TODO 1. convert 1.234 to 1234/10000
+		//TODO 2. use Euclid to simplify
+		return new Fraction((int)(BASIC * value), BASIC);
+	}
+
+	@Override
+	public MixedNumber convertToMixedNumber() {
+		return new MixedNumber((int) value, (int)((value * BASIC) % BASIC), BASIC);
+	}
+
+	@Override
 	public String toString() {
 		return Convert.toString(value);
 	}
@@ -37,31 +62,68 @@ public class Decimal extends NumberExpression {
 		return new Decimal(value);
 	}
 
-	public NumberExpression add(NumberExpression other) {
-		NumberExpression e = null;
-		if (other instanceof WholeNumber) {
-			e = new Decimal(value + ((WholeNumber) other).getValue());
-		} else if (other instanceof Decimal) {
-
-		} else if (other instanceof Fraction) {
-
-		} else if (other instanceof Fraction) {
-			//TODO
-		}
-
-		return e;
+	public NumberExpression add(WholeNumber other) {
+		return new Decimal(value + other.getValue());
 	}
 
-	public NumberExpression subtract(NumberExpression other) {
-		return null; //TODO
+	public NumberExpression subtract(WholeNumber other) {
+		return new Decimal(value - other.getValue());
 	}
 
-	public NumberExpression multiply(NumberExpression other) {
-		return null; //TODO
+	public NumberExpression multiply(WholeNumber other) {
+		return new Decimal(value * other.getValue());
 	}
 
-	public NumberExpression divide(NumberExpression other) {
-		return null; //TODO
+	public NumberExpression divide(WholeNumber other) {
+		return new Decimal(value / other.getValue());
+	}
+
+	public NumberExpression add(Fraction other) {
+		return new Decimal(value + other.getNumerator() / (float) other.getDenominator());
+	}
+
+	public NumberExpression subtract(Fraction other) {
+		return new Decimal(value - other.getNumerator() / (float) other.getDenominator());
+	}
+
+	public NumberExpression multiply(Fraction other) {
+		return new Decimal(value * other.getNumerator() / other.getDenominator());
+	}
+
+	public NumberExpression divide(Fraction other) {
+		return new Decimal(value / other.getNumerator() * other.getDenominator());
+	}
+
+	public NumberExpression add(Decimal other) {
+		return new Decimal(value + other.getValue());
+	}
+
+	public NumberExpression subtract(Decimal other) {
+		return new Decimal(value - other.getValue());
+	}
+
+	public NumberExpression multiply(Decimal other) {
+		return new Decimal(value * other.getValue());
+	}
+
+	public NumberExpression divide(Decimal other) {
+		return new Decimal(value / other.getValue());
+	}
+
+	public NumberExpression add(MixedNumber other) {
+		return new Decimal(value + other.getWhole() + other.getNumerator() / (float) other.getDenominator());
+	}
+
+	public NumberExpression subtract(MixedNumber other) {
+		return new Decimal(value - other.getWhole() - other.getNumerator() / (float) other.getDenominator());
+	}
+
+	public NumberExpression multiply(MixedNumber other) {
+		return new Decimal(value * (other.getWhole() + other.getNumerator() / (float) other.getDenominator()));
+	}
+
+	public NumberExpression divide(MixedNumber other) {
+		return new Decimal(value / (other.getWhole() + other.getNumerator() / (float) other.getDenominator()));
 	}
 }
 

@@ -1,8 +1,6 @@
 package numbersense.model.expression;
 
 import numbersense.model.expression.number.NumberExpression;
-import numbersense.question.QuestionDescription;
-import numbersense.utility.Constants;
 
 /**
  * @author George Chen
@@ -13,14 +11,6 @@ public class ParentheticalExpression extends Expression {
 
 	public ParentheticalExpression(Expression innerExpression) {
 		this.innerExpression = innerExpression;
-	}
-
-
-	@Override
-	public QuestionDescription getDescription() {
-		return new QuestionDescription(Constants.LEFT_PARENTHESIS +
-									   innerExpression.getDescription() +
-									   Constants.RIGHT_PARENTHESIS);
 	}
 
 	/**
