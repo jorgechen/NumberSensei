@@ -14,6 +14,16 @@ public class WholeNumber extends NumberExpression {
 	public static final WholeNumber ZERO = new WholeNumber(0); // Singleton
 	public static final WholeNumber ONE = new WholeNumber(1); // Singleton
 
+	public static WholeNumber one() {
+		return ONE;
+	}
+
+	public static WholeNumber zero() {
+		return ZERO;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
 	private int value;
 
 	public int getValue() {
@@ -24,6 +34,8 @@ public class WholeNumber extends NumberExpression {
 		this.value = value;
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public boolean equalsExactly(NumberExpression number) {
 		if (number instanceof WholeNumber) {
@@ -32,6 +44,8 @@ public class WholeNumber extends NumberExpression {
 		}
 		return false;
 	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public Decimal convertToDecimal() {
@@ -54,35 +68,32 @@ public class WholeNumber extends NumberExpression {
 	}
 
 	@Override
+	public float toFloat() {
+		return value;
+	}
+
+	@Override
+	public int toInt() {
+		return value;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public boolean isPositive() {
+		return !isNegative();
+	}
+
+	@Override
+	public boolean isNegative() {
+		return getValue() < 0;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
+	@Override
 	public String toString() {
 		return Convert.toString(value);
-	}
-
-	public NumberExpression add(NumberExpression other) {
-		NumberExpression result = null;
-		if (other instanceof Decimal) {
-
-		} else if (other instanceof Fraction) {
-
-		} else if (other instanceof MixedNumber) {
-			MixedNumber casted = (MixedNumber) other;
-			result = new MixedNumber(casted.getWhole() + value, casted.getNumerator(), casted.getDenominator());
-		} else if (other instanceof WholeNumber) {
-			result = new WholeNumber(value + ((WholeNumber) other).getValue());
-		}
-		return null; //TODO
-	}
-
-	public NumberExpression subtract(NumberExpression other) {
-		return null; //TODO
-	}
-
-	public NumberExpression multiply(NumberExpression other) {
-		return null; //TODO
-	}
-
-	public NumberExpression divide(NumberExpression other) {
-		return null; //TODO
 	}
 
 	@Override
@@ -90,67 +101,70 @@ public class WholeNumber extends NumberExpression {
 		return new WholeNumber(value);
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
 	public NumberExpression add(WholeNumber other) {
-		return null; //TODO
+		return new WholeNumber(getValue() + other.getValue());
 	}
 
 	public NumberExpression subtract(WholeNumber other) {
-		return null; //TODO
+		return new WholeNumber(getValue() - other.getValue());
 	}
 
 	public NumberExpression multiply(WholeNumber other) {
-		return null; //TODO
+		return new WholeNumber(getValue() * other.getValue());
 	}
 
 	public NumberExpression divide(WholeNumber other) {
-		return null; //TODO
+		return new WholeNumber(getValue() / other.getValue());
 	}
 
 	public NumberExpression add(Fraction other) {
-		return null; //TODO
+		return new Fraction(getValue() * other.getDenominator() + other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression subtract(Fraction other) {
-		return null; //TODO
+		return new Fraction(getValue() * other.getDenominator() - other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression multiply(Fraction other) {
-		return null; //TODO
+		return new Fraction(getValue() * other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression divide(Fraction other) {
-		return null; //TODO
+		return new Fraction(getValue() * other.getDenominator(), other.getNumerator());
 	}
 
 	public NumberExpression add(Decimal other) {
-		return null; //TODO
+		return new Decimal(getValue() + other.getValue());
 	}
 
 	public NumberExpression subtract(Decimal other) {
-		return null; //TODO
+		return new Decimal(getValue() - other.getValue());
 	}
 
 	public NumberExpression multiply(Decimal other) {
-		return null; //TODO
+		return new Decimal(getValue() * other.getValue());
 	}
 
 	public NumberExpression divide(Decimal other) {
-		return null; //TODO
+		return new Decimal(getValue() / other.getValue());
 	}
 
 	public NumberExpression add(MixedNumber other) {
-		return null; //TODO
+		return new MixedNumber(getValue() + other.getWhole(), other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression subtract(MixedNumber other) {
-		return null; //TODO
+		return new MixedNumber(getValue() - other.getWhole(), other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression multiply(MixedNumber other) {
-		return null; //TODO
+		return new MixedNumber(getValue() * other.getWhole(), getValue() * other.getNumerator(), other.getDenominator());
 	}
 
 	public NumberExpression divide(MixedNumber other) {
-		return null; //TODO
+		return divide(other.toFraction());
 	}
+
 }

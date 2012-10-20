@@ -8,8 +8,14 @@ import numbersense.model.expression.number.WholeNumber;
  * @since 12/18/11 6:11 PM
  */
 public class ExponentialExpression extends BinaryExpression {
-	WholeNumber base;          //TODO
-	WholeNumber exponent;//TODO
+
+	public Expression getBase() {
+		return left;
+	}
+
+	public Expression getExponent() {
+		return right;
+	}
 
 	public ExponentialExpression(int base, int exponent) {
 		super(base, exponent);
@@ -29,6 +35,9 @@ public class ExponentialExpression extends BinaryExpression {
 	public NumberExpression evaluate() {
 		//TODO optimize
 
+		NumberExpression base = getBase().evaluate();
+		NumberExpression exponent = getExponent().evaluate();
+
 		NumberExpression answer = WholeNumber.ONE;
 		for (int i = 0; i < exponent.getValue(); i++) {
 			answer = answer.multiply(base);
@@ -37,18 +46,18 @@ public class ExponentialExpression extends BinaryExpression {
 	}
 
 	public NumberExpression add(NumberExpression other) {
-		return null; //TODO
+		return evaluate().add(other);
 	}
 
 	public NumberExpression subtract(NumberExpression other) {
-		return null; //TODO
+		return evaluate().subtract(other);
 	}
 
 	public NumberExpression multiply(NumberExpression other) {
-		return null; //TODO
+		return evaluate().multiply(other);
 	}
 
 	public NumberExpression divide(NumberExpression other) {
-		return null; //TODO
+		return evaluate().divide(other);
 	}
 }

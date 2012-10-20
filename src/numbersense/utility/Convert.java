@@ -13,4 +13,8 @@ public class Convert {
 	public static String toString(float decimal) {
 		return decimal + Constants.EMPTY;
 	}
+
+	public static int magnitude(int integer) {
+		return Math.abs(integer);
+	}
 }

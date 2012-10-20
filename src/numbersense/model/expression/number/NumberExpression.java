@@ -12,6 +12,7 @@ abstract public class NumberExpression extends Expression implements NumberOpera
 
 	abstract public boolean equalsExactly(NumberExpression number);
 
+	////////////////////////////////////////////////////////////////////////////
 	abstract public Decimal convertToDecimal();
 
 	abstract public WholeNumber convertToWholeNumber();
@@ -19,6 +20,20 @@ abstract public class NumberExpression extends Expression implements NumberOpera
 	abstract public Fraction convertToFraction();
 
 	abstract public MixedNumber convertToMixedNumber();
+
+	////////////////////////////////////////////////////////////////////////////
+
+	abstract public float toFloat();
+
+	abstract public int toInt();
+
+	////////////////////////////////////////////////////////////////////////////
+
+	abstract public boolean isPositive();
+
+	abstract public boolean isNegative();
+
+	////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public Expression getLeft() {

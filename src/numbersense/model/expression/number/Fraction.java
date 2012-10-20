@@ -2,6 +2,7 @@ package numbersense.model.expression.number;
 
 import numbersense.model.expression.Expression;
 import numbersense.utility.Constants;
+import numbersense.utility.Convert;
 import numbersense.utility.Tweak;
 
 /**
@@ -25,13 +26,17 @@ public class Fraction extends NumberExpression {
 	public Fraction(int numerator, int denominator) {
 		this.numerator = numerator;
 		this.denominator = denominator;
+		if (this.denominator < 0) {
+			this.numerator = -this.numerator;
+			this.denominator = -this.denominator;
+		}
 	}
 
 	/**
 	 * @return true if this is an improper fraction
 	 */
 	public boolean isImproper() {
-		return numerator >= denominator;
+		return Convert.magnitude(numerator) >= Convert.magnitude(denominator);
 	}
 
 	/**
@@ -77,6 +82,30 @@ public class Fraction extends NumberExpression {
 	}
 
 	@Override
+	public float toFloat() {
+		return numerator / (float) denominator;
+	}
+
+	@Override
+	public int toInt() {
+		return numerator / denominator;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public boolean isPositive() {
+		return !isNegative();
+	}
+
+	@Override
+	public boolean isNegative() {
+		return getNumerator() < 0;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
+	@Override
 	public String toString() {
 		return numerator + Constants.DIVIDE + denominator;
 	}
@@ -85,6 +114,8 @@ public class Fraction extends NumberExpression {
 	public Expression copy() {
 		return new Fraction(numerator, denominator);
 	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	public NumberExpression add(WholeNumber other) {
 		return new Fraction(numerator + denominator * other.getValue(),

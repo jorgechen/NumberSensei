@@ -53,6 +53,26 @@ public class Decimal extends NumberExpression {
 	}
 
 	@Override
+	public float toFloat() {
+		return value;
+	}
+
+	@Override
+	public int toInt() {
+		return (int) value;
+	}
+
+	@Override
+	public boolean isPositive() {
+		return !isNegative();
+	}
+
+	@Override
+	public boolean isNegative() {
+		return getValue() < 0;
+	}
+
+	@Override
 	public String toString() {
 		return Convert.toString(value);
 	}
@@ -79,51 +99,51 @@ public class Decimal extends NumberExpression {
 	}
 
 	public NumberExpression add(Fraction other) {
-		return new Decimal(value + other.getNumerator() / (float) other.getDenominator());
+		return new Decimal(value + other.toFloat());
 	}
 
 	public NumberExpression subtract(Fraction other) {
-		return new Decimal(value - other.getNumerator() / (float) other.getDenominator());
+		return new Decimal(value - other.toFloat());
 	}
 
 	public NumberExpression multiply(Fraction other) {
-		return new Decimal(value * other.getNumerator() / other.getDenominator());
+		return new Decimal(value * other.toFloat());
 	}
 
 	public NumberExpression divide(Fraction other) {
-		return new Decimal(value / other.getNumerator() * other.getDenominator());
+		return new Decimal(value / other.toFloat());
 	}
 
 	public NumberExpression add(Decimal other) {
-		return new Decimal(value + other.getValue());
+		return new Decimal(value + other.toFloat());
 	}
 
 	public NumberExpression subtract(Decimal other) {
-		return new Decimal(value - other.getValue());
+		return new Decimal(value - other.toFloat());
 	}
 
 	public NumberExpression multiply(Decimal other) {
-		return new Decimal(value * other.getValue());
+		return new Decimal(value * other.toFloat());
 	}
 
 	public NumberExpression divide(Decimal other) {
-		return new Decimal(value / other.getValue());
+		return new Decimal(value / other.toFloat());
 	}
 
 	public NumberExpression add(MixedNumber other) {
-		return new Decimal(value + other.getWhole() + other.getNumerator() / (float) other.getDenominator());
+		return new Decimal(value + other.toFloat());
 	}
 
 	public NumberExpression subtract(MixedNumber other) {
-		return new Decimal(value - other.getWhole() - other.getNumerator() / (float) other.getDenominator());
+		return new Decimal(value - other.toFloat());
 	}
 
 	public NumberExpression multiply(MixedNumber other) {
-		return new Decimal(value * (other.getWhole() + other.getNumerator() / (float) other.getDenominator()));
+		return new Decimal(value * other.toFloat());
 	}
 
 	public NumberExpression divide(MixedNumber other) {
-		return new Decimal(value / (other.getWhole() + other.getNumerator() / (float) other.getDenominator()));
+		return new Decimal(value / other.toFloat());
 	}
 }
 

@@ -2,7 +2,6 @@ package numbersense.model.expression;
 
 
 import numbersense.model.expression.number.NumberExpression;
-import numbersense.question.QuestionDescription;
 import numbersense.utility.Constants;
 
 /**
@@ -16,14 +15,14 @@ public class Multiplication extends BinaryExpression {
 	}
 
 	@Override
-	public QuestionDescription getDescription() {
-		return new QuestionDescription(left +
-									   Constants.SPACE +
-									   Constants.MULTIPLY +
-									   Constants.SPACE +
-									   right +
-									   Constants.SPACE +
-									   Constants.EQUAL);
+	public String toString() {
+		return left +
+			   Constants.SPACE +
+			   Constants.MULTIPLY +
+			   Constants.SPACE +
+			   right +
+			   Constants.SPACE +
+			   Constants.EQUAL;
 	}
 
 	@Override
@@ -48,18 +47,18 @@ public class Multiplication extends BinaryExpression {
 	}
 
 	public NumberExpression add(NumberExpression other) {
-		return null; //TODO
+		return evaluate().add(other);
 	}
 
 	public NumberExpression subtract(NumberExpression other) {
-		return null; //TODO
+		return evaluate().subtract(other);
 	}
 
 	public NumberExpression multiply(NumberExpression other) {
-		return null; //TODO
+		return evaluate().multiply(other);
 	}
 
 	public NumberExpression divide(NumberExpression other) {
-		return null; //TODO
+		return evaluate().divide(other);
 	}
 }
