@@ -1,6 +1,7 @@
 package numbersense.question.multiplication;
 
 import numbersense.model.Category;
+import numbersense.model.expression.number.WholeNumber;
 
 /**
  * @author George Chen
@@ -16,6 +17,6 @@ public class MultiplicationBy11 extends MultiplicationBy5 {
 	@Override
 	protected void initialize(int lower, int upper) {
 		super.initialize(lower, upper);
-		right = 11;
+		expression.setRight(new WholeNumber(11));
 	}
 }

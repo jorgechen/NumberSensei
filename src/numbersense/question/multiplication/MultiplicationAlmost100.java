@@ -35,7 +35,7 @@ e)      The answer is 8184.
  * @since 12/24/11 3:13 PM
  */
 public class MultiplicationAlmost100 extends Question {
-	Multiplication expression;
+	private Multiplication expression;
 
 	@Override
 	public Category getCategory() {

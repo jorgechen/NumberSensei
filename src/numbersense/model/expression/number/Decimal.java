@@ -27,6 +27,8 @@ public class Decimal extends NumberExpression {
 		return false;
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public Decimal convertToDecimal() {
 		return (Decimal) this.copy();
@@ -52,6 +54,8 @@ public class Decimal extends NumberExpression {
 		return new MixedNumber((int) value, (int)((value * BASIC) % BASIC), BASIC);
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public float toFloat() {
 		return value;
@@ -61,6 +65,8 @@ public class Decimal extends NumberExpression {
 	public int toInt() {
 		return (int) value;
 	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public boolean isPositive() {
@@ -72,6 +78,8 @@ public class Decimal extends NumberExpression {
 		return getValue() < 0;
 	}
 
+	////////////////////////////////////////////////////////////////////////////
+
 	@Override
 	public String toString() {
 		return Convert.toString(value);
@@ -81,6 +89,8 @@ public class Decimal extends NumberExpression {
 	public Expression copy() {
 		return new Decimal(value);
 	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	public NumberExpression add(WholeNumber other) {
 		return new Decimal(value + other.getValue());

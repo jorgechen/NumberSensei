@@ -9,7 +9,28 @@ import numbersense.model.expression.number.WholeNumber;
 abstract public class BinaryExpression extends Expression {
 
 	protected Expression left;
+
 	protected Expression right;
+
+	@Override
+	public Expression getLeft() {
+		return left;
+	}
+
+	@Override
+	public Expression getRight() {
+		return right;
+	}
+
+	public void setLeft(Expression left) {
+		this.left = left;
+	}
+
+	public void setRight(Expression right) {
+		this.right = right;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	public BinaryExpression() {
 	}
@@ -24,14 +45,5 @@ abstract public class BinaryExpression extends Expression {
 		this.right = right;
 	}
 
-	@Override
-	public Expression getLeft() {
-		return left;
-	}
-
-	@Override
-	public Expression getRight() {
-		return right;
-	}
 
 }
