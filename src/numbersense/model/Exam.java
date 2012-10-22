@@ -2,10 +2,12 @@ package numbersense.model;
 
 import numbersense.model.exam.Composition;
 import numbersense.model.exam.Rule;
-import numbersense.model.expression.Expression;
-import numbersense.model.expression.number.WholeNumber;
 import numbersense.model.level.DifficultyLevel;
+import numbersense.question.Question;
 import numbersense.question.exponential.Square;
+import numbersense.question.memorization.PrimeNumber;
+import numbersense.question.memorization.RomanNumeral;
+import numbersense.question.memorization.RomanNumeralFromArabic;
 import numbersense.question.multiplication.*;
 import numbersense.question.other.OrderOfOperation;
 
@@ -27,7 +29,7 @@ public class Exam {
 
 
 	private int countQuestions;
-	private Expression[] expressions;
+	private Question[] list;
 
 	public Exam(Composition composition) {
 		this(composition.countRemainingRules());
@@ -36,32 +38,32 @@ public class Exam {
 		int i = 0;
 		while (0 < composition.countRemainingRules()) {
 			Rule rule = composition.removeNextRandomRule();
-			Expression newExpression = createQuestion(rule.difficultyLevel, rule.category);
+			Question newOne = createQuestion(rule.difficultyLevel, rule.category);
 
-			this.expressions[i] = newExpression;
+			this.list[i] = newOne;
 			i++;
 		}
 
-		replaceDuplicates(expressions);
+		replaceDuplicates(list);
 
 		//TODO give a proportional chance for each rule according to their proportion of problems in the composition
 	}
 
 	public Exam(int countQuestions, DifficultyLevel level, Category category) {
 		this(countQuestions);
-		expressions = new Expression[countQuestions];
+		list = new Question[countQuestions];
 
 		for (int i = 0; i < countQuestions; i++) {
-			Expression q = createQuestion(level, category);
-			expressions[i] = q;
+			Question q = createQuestion(level, category);
+			list[i] = q;
 		}
 
-		replaceDuplicates(expressions);
+		replaceDuplicates(list);
 	}
 
 	public Exam(int countQuestions) {
 		this.countQuestions = countQuestions;
-		this.expressions = new Expression[countQuestions];
+		this.list = new Question[countQuestions];
 	}
 
 	public Exam() {
@@ -69,53 +71,63 @@ public class Exam {
 		//TODO make a real practice test, randomly generated with different expressions from 1-80
 	}
 
-	public static void replaceDuplicates(Expression[] expressions) {
+	public static void replaceDuplicates(Question[] expressions) {
 
 		//TODO optimize with pre-existing expressions to avoid duplicates
 	}
 
-	public static Expression createQuestion(DifficultyLevel level, Category category) {
-		Expression expression;
+	public static Question createQuestion(DifficultyLevel level, Category category) {
+		Question question;
 		switch (category) {
+		case PRIME_NUMBER:
+			question = new PrimeNumber();
+			break;
+		case ROMAN_NUMERAL:
+			question = new RomanNumeral();
+			break;
+		case ARABIC_TO_ROMAN:
+			question = new RomanNumeralFromArabic();
+			break;
 		case MULTIPLICATION_FOIL:
-			expression = new MultiplicationFOIL();
+			question = new MultiplicationFOIL();
 			break;
 		case MULTIPLICATION_ALMOST_100:
-			expression = new MultiplicationAlmost100();
+			question = new MultiplicationAlmost100();
 			break;
 		case MULTIPLICATION_BY_11:
-			expression = new MultiplicationBy11();
+			question = new MultiplicationBy11();
 			break;
 		case MULTIPLICATION_BY_101:
-			expression = new MultiplicationBy101();
+			question = new MultiplicationBy101();
 			break;
 		case MULTIPLICATION_BY_5:
-			expression = new MultiplicationBy5();
+			question = new MultiplicationBy5();
 			break;
 		case MULTIPLICATION_BY_50:
-			expression = new MultiplicationBy50();
+			question = new MultiplicationBy50();
 			break;
 		case MULTIPLICATION_BY_25:
-			expression = new MultiplicationBy25();
+			question = new MultiplicationBy25();
 			break;
 		case MULTIPLICATION_BY_125:
-			expression = new MultiplicationBy125();
+			question = new MultiplicationBy125();
 			break;
 		case SQUARE:
-			expression = new Square();
+			question = new Square();
 			break;
 		case ORDER_OF_OPERATION:
-			expression = new OrderOfOperation();
-			break;
-		case NOT_A_TRICK:
-		default:
-			expression = WholeNumber.ZERO;
+			question = new OrderOfOperation();
 			break;
 		//TODO add more categories
+
+		case NOT_A_TRICK:
+		default:
+			question = Question.SAMPLE;
+			break;
 		}
 
-		level.accept(expression); // Gets the
-		return expression;
+		level.accept(question); // Gets the
+		return question;
 	}
 
 	/**
@@ -157,8 +169,8 @@ public class Exam {
 
 		int half = countQuestions / 2;
 		for (int i = 0; i < half; i++) {
-			Expression q1 = expressions[i];
-			Expression q2 = expressions[half + i];
+			Question q1 = list[i];
+			Question q2 = list[half + i];
 			String d1 = q1.getDescription().toStringWithLength(maxStringLengthPerQuestion);
 			String d2 = q2.getDescription().toStringWithLength(maxStringLengthPerQuestion);
 
@@ -183,7 +195,7 @@ public class Exam {
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < countQuestions; i++) {
-			Expression q = expressions[i];
+			Question q = list[i];
 			String d = q.getDescription().toString();
 
 			s += (i + 1) + ". " + d + "\n";
@@ -197,8 +209,8 @@ public class Exam {
 	public String toSolutionString() {
 		String s = "";
 		for (int i = 0; i < countQuestions; i++) {
-			Expression q = expressions[i];
-			String d = q.evaluate().toString();
+			Question q = list[i];
+			String d = q.getSolution().toText();
 
 			s += (i + 1) + ". " + d + "\n";
 		}

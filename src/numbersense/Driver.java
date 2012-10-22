@@ -64,22 +64,24 @@ public class Driver {
 
 
 			Exam[] exams = {
-						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_5),
 
-						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_50),
+						   new Exam(20, new Level48(), Category.ARABIC_TO_ROMAN),
+						   new Exam(20, new Level48(), Category.PRIME_NUMBER),
 
-						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_25),
+//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_5),
+//
+//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_50),
+//
+//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_25),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_25),
 
 //						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_125),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_125),
 
-						   new Exam(20, new Level16(), Category.MULTIPLICATION_FOIL),
-						   new Exam(20, new Level16(), Category.SQUARE),
+//						   new Exam(20, new Level16(), Category.MULTIPLICATION_FOIL),
+//						   new Exam(20, new Level16(), Category.SQUARE),
 //						   new Exam(20, new Level32(), Category.MULTIPLICATION_FOIL),
 //						   new Exam(20, new Level48(), Category.MULTIPLICATION_FOIL),
-
-
 
 						   new Exam(composition16),
 						   new Exam(composition32),

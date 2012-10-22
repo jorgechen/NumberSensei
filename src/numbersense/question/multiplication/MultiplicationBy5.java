@@ -2,13 +2,14 @@ package numbersense.question.multiplication;
 
 import numbersense.model.Category;
 import numbersense.model.expression.Multiplication;
-import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.expression.number.WholeNumber;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
 import numbersense.question.Question;
 import numbersense.question.QuestionDescription;
+import numbersense.question.Solution;
+import numbersense.question.SolutionString;
 import numbersense.utility.Randomizer;
 import numbersense.utility.Tweak;
 
@@ -25,8 +26,8 @@ public class MultiplicationBy5 extends Question {
 	}
 
 	@Override
-	public NumberExpression getSolution() {
-		return expression.evaluate();
+	public Solution getSolution() {
+		return new SolutionString(expression.evaluate().toString());
 	}
 
 	@Override

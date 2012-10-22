@@ -39,7 +39,7 @@ public class ExponentialExpression extends BinaryExpression {
 		NumberExpression exponent = getExponent().evaluate();
 
 		NumberExpression answer = WholeNumber.ONE;
-		for (int i = 0; i < exponent.getValue(); i++) {
+		for (int i = 0; i < exponent.toInt(); i++) {
 			answer = answer.multiply(base);
 		}
 		return answer;

@@ -25,6 +25,17 @@ public class Constants {
 	public static final String EMPTY = "";
 
 
+	public final class Roman {
+		public static final String ONE = "I";
+		public static final String FIVE = "V";
+		public static final String TEN = "X";
+		public static final String FIFTY = "L";
+		public static final String HUNDRED = "C";
+		public static final String FIVE_HUNDRED = "D";
+		public static final String THOUSAND = "M";
+	}
+
+
 
 	///////////////////////////////////////////////////////////////////////
 	// Numbers
@@ -33,4 +44,5 @@ public class Constants {
 	final public static double DECIMAL_ERROR = 0.001;
 	final public static double ERROR_DEVIATION = 0.05;
 	final public static int ZERO = 0;
+
 }

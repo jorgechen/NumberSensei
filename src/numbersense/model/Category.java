@@ -7,6 +7,10 @@ package numbersense.model;
 
 public enum Category {
 	NOT_A_TRICK,
+	DIVISIBILITY,
+	PRIME_NUMBER,
+	ROMAN_NUMERAL,
+	ARABIC_TO_ROMAN,
 	ORDER_OF_OPERATION,
 	EXPONENTIAL,
 	SQUARE,
