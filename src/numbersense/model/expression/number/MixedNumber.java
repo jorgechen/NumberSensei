@@ -131,7 +131,7 @@ public class MixedNumber extends NumberExpression {
 		return getWhole() +
 			   Constants.SPACE +
 			   getNumerator() +
-			   Constants.DIVIDE +
+			   Constants.SIGN_DIVIDE +
 			   getDenominator();
 	}
 
@@ -139,6 +139,19 @@ public class MixedNumber extends NumberExpression {
 	public Expression copy() {
 		return new MixedNumber(getWhole(), getNumerator(), getDenominator());
 	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean isEqual = false;
+		if (other instanceof MixedNumber) {
+			MixedNumber otherM = (MixedNumber)other;
+			isEqual = getFraction().isEqualTo(otherM.getFraction()) &&
+					  getWholeNumber().isEqualTo(otherM.getWholeNumber());
+		}
+		return isEqual;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
 
 	public NumberExpression add(WholeNumber other) {
 		return wholeNumber.add(other).add(fraction);

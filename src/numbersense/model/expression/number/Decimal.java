@@ -2,6 +2,7 @@ package numbersense.model.expression.number;
 
 import numbersense.model.expression.Expression;
 import numbersense.utility.Convert;
+import numbersense.utility.Utility;
 
 /**
  * @author George Chen
@@ -88,6 +89,15 @@ public class Decimal extends NumberExpression {
 	@Override
 	public Expression copy() {
 		return new Decimal(value);
+	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean isEqual = false;
+		if (other instanceof Decimal) {
+			isEqual = Utility.compareFloats(getValue(), ((Decimal) other).getValue());
+		}
+		return isEqual;
 	}
 
 	////////////////////////////////////////////////////////////////////////////

@@ -49,22 +49,22 @@ public class WholeNumber extends NumberExpression {
 
 	@Override
 	public Decimal convertToDecimal() {
-		return null; //TODO
+		return new Decimal(getValue());
 	}
 
 	@Override
 	public WholeNumber convertToWholeNumber() {
-		return null; //TODO
+		return (WholeNumber)this.copy();
 	}
 
 	@Override
 	public Fraction convertToFraction() {
-		return null; //TODO
+		return new Fraction(getValue(), 1);
 	}
 
 	@Override
 	public MixedNumber convertToMixedNumber() {
-		return null; //TODO
+		return new MixedNumber(getValue(), 0, 1);
 	}
 
 	@Override
@@ -99,6 +99,15 @@ public class WholeNumber extends NumberExpression {
 	@Override
 	public Expression copy() {
 		return new WholeNumber(value);
+	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean isEqual = false;
+		if (other instanceof WholeNumber) {
+			isEqual = getValue() == ((WholeNumber)other).getValue();
+		}
+		return isEqual;
 	}
 
 	////////////////////////////////////////////////////////////////////////////

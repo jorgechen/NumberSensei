@@ -13,16 +13,19 @@ public class Constants {
 	public static final String UNDERSCORES = "_____________________________________________________________" +
 											 "_____________________________________________________________";
 
-	public static final String MULTIPLY = "x";
-	public static final String DIVIDE = "/";
-	public static final String PLUS = "+";
-	public static final String MINUS = "-";
+	public static final String SIGN_MULTIPLY = "x";
+	public static final String SIGN_DIVIDE = "/";
+	public static final String SIGN_ADD = "+";
+	public static final String SIGN_SUBTRACT = "-";
+
 	public static final String LEFT_PARENTHESIS = "(";
 	public static final String RIGHT_PARENTHESIS = ")";
 
+	public static final String SIGN_POWER = "^";
+
 	public static final String SPACE = " ";
-	public static final String EQUAL = "=";
-	public static final String EMPTY = "";
+	public static final String SIGN_EQUAL = "=";
+	public static final String EMPTY_STRING = "";
 
 
 	public final class Roman {
@@ -41,7 +44,7 @@ public class Constants {
 	// Numbers
 	///////////////////////////////////////////////////////////////////////
 
-	final public static double DECIMAL_ERROR = 0.001;
+	final public static double FLOAT_ERROR_EPSILON = 0.0001;
 	final public static double ERROR_DEVIATION = 0.05;
 	final public static int ZERO = 0;
 

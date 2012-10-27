@@ -2,12 +2,13 @@ package numbersense.question.exponential;
 
 import numbersense.model.Category;
 import numbersense.model.expression.ExponentialExpression;
-import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.level.Level16;
 import numbersense.model.level.Level32;
 import numbersense.model.level.Level48;
 import numbersense.question.Question;
 import numbersense.question.QuestionDescription;
+import numbersense.question.Solution;
+import numbersense.question.SolutionString;
 import numbersense.utility.Randomizer;
 
 /**
@@ -29,8 +30,8 @@ public class Square extends Question {
 	}
 
 	@Override
-	public NumberExpression getSolution() {
-		return exponentialExpression.evaluate();
+	public Solution getSolution() {
+		return SolutionString.create(exponentialExpression.evaluate());
 	}
 
 	@Override

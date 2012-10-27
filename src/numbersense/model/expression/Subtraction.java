@@ -9,9 +9,9 @@ import numbersense.utility.Utility;
  * @author George Chen
  * @since 12/24/11 3:01 PM
  */
-public class Multiplication extends BinaryExpression {
+public class Subtraction extends BinaryExpression {
 
-	public Multiplication(Expression left, Expression right) {
+	public Subtraction(Expression left, Expression right) {
 		super(left, right);
 	}
 
@@ -19,31 +19,29 @@ public class Multiplication extends BinaryExpression {
 	public String toString() {
 		return Utility.concatenateWithSpaces(new String[]{
 														 left.toString(),
-														 Constants.SIGN_MULTIPLY,
+														 Constants.SIGN_SUBTRACT,
 														 right.toString()
 		});
 	}
-
 	@Override
 	public Expression copy() {
-		return new Multiplication(left.copy(), right.copy());
+		return new Subtraction(left.copy(), right.copy());
 	}
 
 	@Override
 	public NumberExpression evaluate() {
-		return left.evaluate().multiply(right.evaluate());
+		return left.evaluate().subtract(right.evaluate());
 	}
 
 	@Override
-	public boolean isEqualTo(Expression otherExpression) {
+	public boolean isEqualTo(Expression other) {
 		boolean b = false;
-		if (otherExpression instanceof Multiplication) {
-			Multiplication q = (Multiplication) otherExpression;
+		if (other instanceof Subtraction) {
+			Subtraction q = (Subtraction) other;
 			if (q.left.isEqualTo(this.left) && q.right.isEqualTo(this.right)) {
 				b = true;
 			}
 		}
 		return b;
 	}
-
 }

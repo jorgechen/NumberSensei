@@ -107,12 +107,23 @@ public class Fraction extends NumberExpression {
 
 	@Override
 	public String toString() {
-		return numerator + Constants.DIVIDE + denominator;
+		return numerator + Constants.SIGN_DIVIDE + denominator;
 	}
 
 	@Override
 	public Expression copy() {
 		return new Fraction(numerator, denominator);
+	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean isEqual = false;
+		if (other instanceof Fraction) {
+			Fraction otherF = (Fraction)other;
+			isEqual = getNumerator() == otherF.getNumerator() &&
+					  getDenominator() == otherF.getDenominator();
+		}
+		return isEqual;
 	}
 
 	////////////////////////////////////////////////////////////////////////////

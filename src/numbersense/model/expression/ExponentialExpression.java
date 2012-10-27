@@ -2,6 +2,8 @@ package numbersense.model.expression;
 
 import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.expression.number.WholeNumber;
+import numbersense.utility.Constants;
+import numbersense.utility.Utility;
 
 /**
  * @author George Chen
@@ -25,6 +27,14 @@ public class ExponentialExpression extends BinaryExpression {
 		super(base, exponent);
 	}
 
+	@Override
+	public String toString() {
+		return Utility.concatenateWithSpaces(new String[]{
+														 left.toString(),
+														 Constants.SIGN_POWER,
+														 right.toString()
+		});
+	}
 
 	@Override
 	public Expression copy() {
@@ -43,6 +53,18 @@ public class ExponentialExpression extends BinaryExpression {
 			answer = answer.multiply(base);
 		}
 		return answer;
+	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean b = false;
+		if (other instanceof ExponentialExpression) {
+			ExponentialExpression q = (ExponentialExpression) other;
+			if (q.left.isEqualTo(this.left) && q.right.isEqualTo(this.right)) {
+				b = true;
+			}
+		}
+		return b;
 	}
 
 	public NumberExpression add(NumberExpression other) {

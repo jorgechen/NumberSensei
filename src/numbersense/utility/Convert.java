@@ -7,11 +7,11 @@ package numbersense.utility;
 public class Convert {
 
 	public static String toString(int number) {
-		return number + Constants.EMPTY;
+		return number + Constants.EMPTY_STRING;
 	}
 
 	public static String toString(float decimal) {
-		return decimal + Constants.EMPTY;
+		return decimal + Constants.EMPTY_STRING;
 	}
 
 	public static int magnitude(int integer) {

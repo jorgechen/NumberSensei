@@ -44,7 +44,5 @@ abstract public class Expression implements Operator {
 		}
 	}
 
-
-	//TODO
-//	abstract public boolean isEqual(Expression otherQuestion);
+	abstract public boolean isEqualTo(Expression other);
 }

@@ -1,5 +1,6 @@
 package numbersense.model.expression;
 
+import numbersense.model.expression.number.NumberExpression;
 import numbersense.model.expression.number.WholeNumber;
 
 /**
@@ -45,5 +46,21 @@ abstract public class BinaryExpression extends Expression {
 		this.right = right;
 	}
 
+	////////////////////////////////////////////////////////////////////////////
 
+	public NumberExpression add(NumberExpression other) {
+		return evaluate().add(other);
+	}
+
+	public NumberExpression subtract(NumberExpression other) {
+		return evaluate().subtract(other);
+	}
+
+	public NumberExpression multiply(NumberExpression other) {
+		return evaluate().multiply(other);
+	}
+
+	public NumberExpression divide(NumberExpression other) {
+		return evaluate().divide(other);
+	}
 }

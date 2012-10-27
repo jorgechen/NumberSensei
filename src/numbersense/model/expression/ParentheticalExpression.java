@@ -13,17 +13,11 @@ public class ParentheticalExpression extends Expression {
 		this.innerExpression = innerExpression;
 	}
 
-	/**
-	 * @return first half of the expression inside parentheses
-	 */
 	@Override
 	public Expression getLeft() {
 		return innerExpression.getLeft();
 	}
 
-	/**
-	 * @return second half of the expression inside parentheses
-	 */
 	@Override
 	public Expression getRight() {
 		return innerExpression.getRight();
@@ -32,6 +26,23 @@ public class ParentheticalExpression extends Expression {
 	@Override
 	public NumberExpression evaluate() {
 		return innerExpression.evaluate();
+	}
+
+	@Override
+	public String toString() {
+		return "(" + innerExpression.toString() + ")";
+	}
+
+	@Override
+	public boolean isEqualTo(Expression other) {
+		boolean b = false;
+		if (other instanceof ParentheticalExpression) {
+			ParentheticalExpression q = (ParentheticalExpression) other;
+			if (innerExpression.isEqualTo(q.innerExpression)) {
+				b = true;
+			}
+		}
+		return b;
 	}
 
 	@Override

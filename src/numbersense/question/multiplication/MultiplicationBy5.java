@@ -10,6 +10,7 @@ import numbersense.question.Question;
 import numbersense.question.QuestionDescription;
 import numbersense.question.Solution;
 import numbersense.question.SolutionString;
+import numbersense.utility.Constants;
 import numbersense.utility.Randomizer;
 import numbersense.utility.Tweak;
 
@@ -32,7 +33,7 @@ public class MultiplicationBy5 extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(expression.toString());
+		return new QuestionDescription(expression.toString() + Constants.SPACE + Constants.SIGN_EQUAL);
 	}
 
 	////////////////////////////////////////////////////////////////////////////

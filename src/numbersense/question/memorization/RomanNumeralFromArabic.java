@@ -18,6 +18,7 @@ import numbersense.utility.Randomizer;
 public class RomanNumeralFromArabic extends Question {
 
 	public static String toRomanNumeral(int i) {
+		//TODO fix this, returned String is wrong
 		assert (i > 0);
 		String roman = "";
 		roman += helper((i % 10000) / 1000, Constants.Roman.HUNDRED, Constants.Roman.FIVE_HUNDRED, Constants.Roman.THOUSAND);
@@ -70,7 +71,7 @@ public class RomanNumeralFromArabic extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(wholeNumber.getValue() + " =", "(Roman Numeral)");
+		return new QuestionDescription(wholeNumber.getValue() + " =", "(Roman numeral)");
 	}
 
 	private void initialize(int upper) {

@@ -33,15 +33,12 @@ abstract public class Question implements QuestionCreatingVisitor {
 		}
 
 		public void visit(Level16 level) {
-			//TODO
 		}
 
 		public void visit(Level32 level) {
-			//TODO
 		}
 
 		public void visit(Level48 level) {
-			//TODO
 		}
 	};
 
