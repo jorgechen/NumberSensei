@@ -1,7 +1,7 @@
 package numbersense.question.multiplication;
 
-import numbersense.model.Category;
-import numbersense.model.expression.number.WholeNumber;
+import numbersense.exam.Category;
+import numbersense.exam.expression.number.WholeNumber;
 
 /**
  * @author George Chen

@@ -1,13 +1,13 @@
 package numbersense;
 
-import numbersense.model.Category;
-import numbersense.model.Exam;
-import numbersense.model.exam.Composition;
-import numbersense.model.exam.Rule;
-import numbersense.model.level.DifficultyLevel;
-import numbersense.model.level.Level16;
-import numbersense.model.level.Level32;
-import numbersense.model.level.Level48;
+import numbersense.exam.Category;
+import numbersense.exam.Exam;
+import numbersense.exam.Composition;
+import numbersense.exam.Rule;
+import numbersense.exam.level.DifficultyLevel;
+import numbersense.exam.level.Level16;
+import numbersense.exam.level.Level32;
+import numbersense.exam.level.Level48;
 import numbersense.utility.Debugger;
 
 import java.io.File;
@@ -64,7 +64,6 @@ public class Driver {
 
 
 			Exam[] exams = {
-
 						   new Exam(20, new Level48(), Category.ARABIC_TO_ROMAN),
 						   new Exam(20, new Level48(), Category.PRIME_NUMBER),
 

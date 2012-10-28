@@ -1,6 +1,6 @@
 package numbersense.question;
 
-import numbersense.model.expression.number.NumberExpression;
+import numbersense.exam.expression.number.NumberExpression;
 
 /**
  * @author George Chen

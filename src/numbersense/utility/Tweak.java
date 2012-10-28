@@ -1,7 +1,7 @@
 package numbersense.utility;
 
 
-import numbersense.model.expression.number.Fraction;
+import numbersense.exam.expression.number.Fraction;
 
 /**
  * @author George Chen

@@ -1,11 +1,11 @@
 package numbersense.question;
 
-import numbersense.model.Category;
-import numbersense.model.expression.Multiplication;
-import numbersense.model.expression.number.WholeNumber;
-import numbersense.model.level.Level16;
-import numbersense.model.level.Level32;
-import numbersense.model.level.Level48;
+import numbersense.exam.Category;
+import numbersense.exam.expression.Multiplication;
+import numbersense.exam.expression.number.WholeNumber;
+import numbersense.exam.level.Level16;
+import numbersense.exam.level.Level32;
+import numbersense.exam.level.Level48;
 
 /**
  * @author George Chen

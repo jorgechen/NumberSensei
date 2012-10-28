@@ -1,10 +1,10 @@
 package numbersense.question.exponential;
 
-import numbersense.model.Category;
-import numbersense.model.expression.ExponentialExpression;
-import numbersense.model.level.Level16;
-import numbersense.model.level.Level32;
-import numbersense.model.level.Level48;
+import numbersense.exam.Category;
+import numbersense.exam.expression.ExponentialExpression;
+import numbersense.exam.level.Level16;
+import numbersense.exam.level.Level32;
+import numbersense.exam.level.Level48;
 import numbersense.question.Question;
 import numbersense.question.QuestionDescription;
 import numbersense.question.Solution;
