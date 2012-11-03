@@ -7,6 +7,7 @@ package numbersense.exam;
 
 public enum Category {
 	NOT_A_TRICK,
+	BASE_CONVERSION,
 	DIVISIBILITY,
 	PRIME_NUMBER,
 	ROMAN_NUMERAL,

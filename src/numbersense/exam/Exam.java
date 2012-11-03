@@ -2,6 +2,7 @@ package numbersense.exam;
 
 import numbersense.exam.level.DifficultyLevel;
 import numbersense.question.Question;
+import numbersense.question.bases.BaseConversion;
 import numbersense.question.exponential.Square;
 import numbersense.question.memorization.PrimeNumber;
 import numbersense.question.memorization.RomanNumeral;
@@ -26,8 +27,8 @@ public class Exam {
 	public static final int DEFAULT_COUNT_QUESTIONS = 20;
 
 
-	private int countQuestions;
-	private Question[] list;
+	protected int countQuestions;
+	protected Question[] list;
 
 	public Exam(Composition composition) {
 		this(composition.countRemainingRules());
@@ -77,6 +78,9 @@ public class Exam {
 	public static Question createQuestion(DifficultyLevel level, Category category) {
 		Question question;
 		switch (category) {
+		case BASE_CONVERSION:
+			question = new BaseConversion();
+			break;
 		case PRIME_NUMBER:
 			question = new PrimeNumber();
 			break;

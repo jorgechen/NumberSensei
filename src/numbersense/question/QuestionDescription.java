@@ -15,6 +15,8 @@ import numbersense.utility.Constants;
  * @since 12/19/11 5:01 PM
  */
 public class QuestionDescription {
+
+
 	public String question;
 	public String appendix;
 
@@ -58,5 +60,13 @@ public class QuestionDescription {
 	@Override
 	public String toString() {
 		return getQuestion() + " ____ " + getAppendix();
+	}
+
+	public static QuestionDescription create(String question) {
+		return new QuestionDescription(question);
+	}
+
+	public static QuestionDescription create(String question, String appendix) {
+		return new QuestionDescription(question, appendix);
 	}
 }
