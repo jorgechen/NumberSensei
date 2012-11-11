@@ -1,5 +1,6 @@
 package numbersense.question;
 
+import numbersense.exam.expression.Expression;
 import numbersense.exam.expression.number.NumberExpression;
 
 /**
@@ -9,7 +10,7 @@ import numbersense.exam.expression.number.NumberExpression;
 abstract public class Solution {
 	abstract public String toText();
 
-	public static Solution create(NumberExpression number) {
+	public static Solution create(Expression number) {
 		return new SolutionString(number.evaluate().toString());
 	}
 

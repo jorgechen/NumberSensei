@@ -114,6 +114,9 @@ public class Exam {
 		case MULTIPLICATION_BY_125:
 			question = new MultiplicationBy125();
 			break;
+		case MULTIPLICATION_SLIGHTLY_GREATER_THAN_100:
+			question = new MultiplicationSlightlyGreaterThan100();
+			break;
 		case SQUARE:
 			question = new Square();
 			break;
