@@ -36,15 +36,15 @@ public class MultiplicationSlightlyGreaterThan100 extends Question{
 	}
 
 	public void visit(Level16 level) {
-		initialize(110);
+		initialize(109);
 	}
 
 	public void visit(Level32 level) {
-		initialize(110); //TODO
+		initialize(112);
 	}
 
 	public void visit(Level48 level) {
-		initialize(110); //TODO
+		initialize(115);
 	}
 
 	private void initialize(int bound) {

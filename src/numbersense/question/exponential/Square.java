@@ -41,7 +41,7 @@ public class Square extends Question {
 
 	public static int UPPER_BOUND_LEVEL_16 = 15;
 	public static int UPPER_BOUND_LEVEL_32 = 25;
-	public static int UPPER_BOUND_LEVEL_48 = 32;
+	public static int UPPER_BOUND_LEVEL_48 = 35;
 
 	public void visit(Level16 level) {
 		initialize(UPPER_BOUND_LEVEL_16);

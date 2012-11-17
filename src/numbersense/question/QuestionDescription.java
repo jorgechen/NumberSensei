@@ -63,10 +63,10 @@ public class QuestionDescription {
 	}
 
 	public static QuestionDescription create(String question) {
-		return new QuestionDescription(question);
+		return new QuestionDescription(question + " =");
 	}
 
 	public static QuestionDescription create(String question, String appendix) {
-		return new QuestionDescription(question, appendix);
+		return new QuestionDescription(question + " =", appendix);
 	}
 }

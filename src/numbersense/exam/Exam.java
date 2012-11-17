@@ -93,8 +93,8 @@ public class Exam {
 		case MULTIPLICATION_FOIL:
 			question = new MultiplicationFOIL();
 			break;
-		case MULTIPLICATION_ALMOST_100:
-			question = new MultiplicationAlmost100();
+		case MULTIPLICATION_SLIGHTLY_LESS_THAN_100:
+			question = new MultiplicationSlightlyLessThan100();
 			break;
 		case MULTIPLICATION_BY_11:
 			question = new MultiplicationBy11();

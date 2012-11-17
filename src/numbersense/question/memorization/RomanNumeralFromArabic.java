@@ -19,38 +19,51 @@ public class RomanNumeralFromArabic extends Question {
 
 	public static String toRomanNumeral(int i) {
 		//TODO fix this, returned String is wrong
+		System.out.println("number=" + i);
 		assert (i > 0);
 		String roman = "";
-		roman += helper((i % 10000) / 1000, Constants.Roman.HUNDRED, Constants.Roman.FIVE_HUNDRED, Constants.Roman.THOUSAND);
-		roman += helper((i % 1000) / 100, Constants.Roman.TEN, Constants.Roman.FIFTY, Constants.Roman.HUNDRED);
-		roman += helper((i % 100) / 10, Constants.Roman.ONE, Constants.Roman.FIVE, Constants.Roman.TEN);
+		int n;
+		n = (i / 100) % 10;
+		roman += helper(n, Constants.Roman.HUNDRED, Constants.Roman.FIVE_HUNDRED, Constants.Roman.THOUSAND);
+		n = (i / 10) % 10;
+		roman += helper(n, Constants.Roman.TEN, Constants.Roman.FIFTY, Constants.Roman.HUNDRED);
+		n = (i / 1) % 10;
+		roman += helper(n, Constants.Roman.ONE, Constants.Roman.FIVE, Constants.Roman.TEN);
 		return roman;
 	}
 
 	private static String helper(int i, String one, String five, String ten) {
 //		assert (0 < i);
 //		assert (i < 10);
-
+		System.out.println("using " + i + " for " + one + "," + five + "," + ten);
 		String s = "";
 
 		switch (i) {
 		case 4:
-			return one + five;
+			s += one + five;
+			break;
 		case 5:
-			return five;
+		case 6:
+		case 7:
+		case 8:
+			s += five;
+			break;
 		case 9:
-			return one + ten;
+			s += one + ten;
+			break;
 		}
 
 		switch (i % 5) {
-		case 1:
+		case 3:
 			s += one;
 		case 2:
-			s += one + one;
-		case 3:
-			s += one + one + one;
+			s += one;
+		case 1:
+			s += one;
+			break;
 		}
 
+		System.out.println("returned=" + s);
 		return s;
 	}
 
