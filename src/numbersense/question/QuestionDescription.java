@@ -1,5 +1,6 @@
 package numbersense.question;
 
+import numbersense.exam.expression.number.NumberExpression;
 import numbersense.utility.Constants;
 
 /**
@@ -68,5 +69,13 @@ public class QuestionDescription {
 
 	public static QuestionDescription create(String question, String appendix) {
 		return new QuestionDescription(question + " =", appendix);
+	}
+
+	public static QuestionDescription create(NumberExpression questionExpression) {
+		return new QuestionDescription(questionExpression.toString() + " =");
+	}
+
+	public static QuestionDescription create(NumberExpression questionExpression, NumberExpression appendixExpression) {
+		return QuestionDescription.create(questionExpression.toString(), appendixExpression.toString());
 	}
 }

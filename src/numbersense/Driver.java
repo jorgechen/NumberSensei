@@ -13,6 +13,7 @@ import numbersense.utility.Debugger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Compile in cmd, from the root project directory:
@@ -43,6 +44,8 @@ public class Driver {
 																  new Rule(Category.MULTIPLICATION_BY_25, dl16, 8),
 																  new Rule(Category.MULTIPLICATION_BY_11, dl16, 8),
 																  new Rule(Category.MULTIPLICATION_BY_101, dl16, 8),
+																  new Rule(Category.MULTIPLICATION_SLIGHTLY_GREATER_THAN_100, dl16, 8),
+																  new Rule(Category.MULTIPLICATION_SLIGHTLY_LESS_THAN_100, dl16, 8),
 																  new Rule(Category.MULTIPLICATION_FOIL, dl16, 8)
 			});
 
@@ -62,60 +65,99 @@ public class Driver {
 																  new Rule(Category.MULTIPLICATION_FOIL, dl48, 8)
 			});
 
+			Composition.create(new Rule(Category.MULTIPLICATION_BY_5, dl16, 8));
+
+
+			final int COUNT = 10;
 
 			Exam[] exams = {
-						   new Exam(20, new Level48(), Category.ARABIC_TO_ROMAN),
-						   new Exam(20, new Level48(), Category.PRIME_NUMBER),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_5, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_25, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_11, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_101, dl32, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_SLIGHTLY_GREATER_THAN_100, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_SLIGHTLY_LESS_THAN_100, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.ARABIC_TO_ROMAN, dl32, 8))),
+//						   new Exam(Composition.create(new Rule(Category.SQUARE, dl32, 8))),
+						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl16, COUNT * 3))),
+						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl32, COUNT * 3))),
+						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl48, COUNT * 3))),
 
-//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_5),
-//
-//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_50),
-//
-//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_25),
-//						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_25),
+//						   new Exam(COUNT, new Level16(), Category.ARABIC_TO_ROMAN),
+//						   new Exam(COUNT, new Level48(), Category.PRIME_NUMBER),
 
-//						   new Exam(20, new Level16(), Category.MULTIPLICATION_BY_125),
-//						   new Exam(20, new Level32(), Category.MULTIPLICATION_BY_125),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_5),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_50),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_25),
+//						   new Exam(COUNT, new Level32(), Category.MULTIPLICATION_BY_25),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_125),
+//						   new Exam(COUNT, new Level32(), Category.MULTIPLICATION_BY_125),
+//						   new Exam(COUNT, new Level48(), Category.MULTIPLICATION_BY_125),
 
-//						   new Exam(20, new Level16(), Category.MULTIPLICATION_FOIL),
-//						   new Exam(20, new Level16(), Category.SQUARE),
-//						   new Exam(20, new Level32(), Category.MULTIPLICATION_FOIL),
-//						   new Exam(20, new Level48(), Category.MULTIPLICATION_FOIL),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_11),
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_BY_101),
+//						   new Exam(COUNT, new Level32(), Category.MULTIPLICATION_BY_101),
 
-						   new Exam(composition16),
-						   new Exam(composition32),
-						   new Exam(composition48)
+//						   new Exam(COUNT, new Level32(), Category.MULTIPLICATION_SLIGHTLY_GREATER_THAN_100),
+//						   new Exam(COUNT, new Level32(), Category.SQUARE),
+//						   new Exam(COUNT, new Level16(), Category.CUBE),
+
+//						   new Exam(COUNT, new Level16(), Category.MULTIPLICATION_FOIL),
+//						   new Exam(COUNT, new Level32(), Category.MULTIPLICATION_FOIL),
+//						   new Exam(COUNT, new Level48(), Category.MULTIPLICATION_FOIL),
+
+
+//						   new Exam(composition16),
+//						   new Exam(composition32),
+//						   new Exam(composition48)
 			};
 
 
 			String filePrefix = "practice_and_solution_";
 			String fileExtension = ".txt";
 
-			for (int i = 0; i < exams.length; i++) {
-				Exam exam = exams[i];
-
-				// Get questions
-				String data = exam.toString();
-
-				// Get solutions
-				String solution = exam.toSolutionString();
-
-				// Make save path
-				String path = System.getProperty("user.dir") + File.separator + filePrefix + i + fileExtension;
-
-				// Save
-				Debugger.p("Saving exam to " + path);
-
-				String saveContent = data + "\n\n" + "Solutions\n" + solution;
-				saveToFile(saveContent, path);
-
-//				String pathSolution = path.replaceFirst("practice", "solution");
-//				Debugger.p("Saving answers to " + pathSolution);
-//				saveToFile(solution, pathSolution);
-
-			}
-
+			saveInOneFile(exams, filePrefix, fileExtension);
+//			saveMultipleFiles(exams, filePrefix, fileExtension);
 		}
+	}
+
+	public static void saveInOneFile(Exam[] exams, String filePrefix, String fileExtension) {
+		String all = "";
+		for (int i = 0; i < exams.length; i++) {
+			Exam exam = exams[i];
+
+			// Get questions
+			String data = exam.toString();
+
+			// Get solutions
+			String solution = exam.toSolutionString();
+
+			all += data + "\n" + solution + "\n";
+		}
+
+		saveToFile(all, filePrefix + fileExtension);
+	}
+
+	public static void saveMultipleFiles(Exam[] exams, String filePrefix, String fileExtension) {
+		for (int i = 0; i < exams.length; i++) {
+			Exam exam = exams[i];
+
+			// Get questions
+			String data = exam.toString();
+
+			// Get solutions
+			String solution = exam.toSolutionString();
+
+			// Make save path
+			String path = System.getProperty("user.dir") + File.separator + filePrefix + i + fileExtension;
+
+			// Save
+			Debugger.p("Saving exam to " + path);
+
+			String saveContent = data + "\n\n" + "Solutions\n" + solution;
+			saveToFile(saveContent, path);
+		}
+
 	}
 
 	public static void initialize(String[] args) {

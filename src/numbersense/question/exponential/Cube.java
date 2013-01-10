@@ -15,12 +15,12 @@ import numbersense.utility.Randomizer;
  * @author George Chen
  * @since 12/18/11 6:11 PM
  */
-public class Square extends Question {
+public class Cube extends Question {
 	private ExponentialExpression exponentialExpression;
 
 	protected void initialize(int upperBound) {
 		int base = Randomizer.random1toN(upperBound);
-		int exponent = 2;
+		int exponent = 3;
 		exponentialExpression = new ExponentialExpression(base, exponent);
 	}
 

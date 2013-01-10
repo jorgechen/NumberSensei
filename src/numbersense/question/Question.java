@@ -29,7 +29,7 @@ abstract public class Question implements QuestionCreatingVisitor {
 
 		@Override
 		public QuestionDescription getDescription() {
-			return new QuestionDescription(multiplication.toString());
+			return  QuestionDescription.create(multiplication.toString());
 		}
 
 		public void visit(Level16 level) {

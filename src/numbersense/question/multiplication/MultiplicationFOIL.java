@@ -32,7 +32,7 @@ public class MultiplicationFOIL extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(expression.toString());
+		return QuestionDescription.create(expression.toString());
 	}
 
 	////////////////////////////////////////////////////////////////////////////

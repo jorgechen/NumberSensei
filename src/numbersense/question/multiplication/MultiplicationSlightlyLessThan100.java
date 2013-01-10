@@ -50,7 +50,7 @@ public class MultiplicationSlightlyLessThan100 extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(expression.toString());
+		return QuestionDescription.create(expression.toString());
 	}
 
 	private void initialize(int bound) {

@@ -79,4 +79,8 @@ public class Composition {
 		}
 		return count;
 	}
+
+	public static Composition create(Rule rule) {
+		return new Composition(new Rule[]{rule});
+	}
 }

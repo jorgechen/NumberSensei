@@ -32,7 +32,7 @@ public class OrderOfOperation extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(expression.toString() + Constants.SIGN_EQUAL);
+		return QuestionDescription.create(expression.toString() + Constants.SIGN_EQUAL);
 	}
 
 	private void initialize() {

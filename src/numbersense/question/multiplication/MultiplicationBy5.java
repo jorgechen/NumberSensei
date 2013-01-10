@@ -33,7 +33,7 @@ public class MultiplicationBy5 extends Question {
 
 	@Override
 	public QuestionDescription getDescription() {
-		return new QuestionDescription(expression.toString() + Constants.SPACE + Constants.SIGN_EQUAL);
+		return QuestionDescription.create(expression.toString());
 	}
 
 	////////////////////////////////////////////////////////////////////////////
