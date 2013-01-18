@@ -99,6 +99,9 @@ public class Exam {
 		case MULTIPLICATION_BY_11:
 			question = new MultiplicationBy11();
 			break;
+		case MULTIPLICATION_BY_12:
+			question = new MultiplicationBy12();
+			break;
 		case MULTIPLICATION_BY_101:
 			question = new MultiplicationBy101();
 			break;
