@@ -65,23 +65,39 @@ public class Driver {
 																  new Rule(Category.MULTIPLICATION_FOIL, dl48, 8)
 			});
 
-			Composition.create(new Rule(Category.MULTIPLICATION_BY_5, dl16, 8));
+			Composition c1 = new Composition(new Rule[]{
+													   new Rule(Category.MULTIPLICATION_BY_NUMBER_BETWEEN_12_AND_19, dl16, 8),
+			});
+			Composition c2 = new Composition(new Rule[]{
+													   new Rule(Category.MULTIPLICATION_BY_NUMBER_BETWEEN_12_AND_19, dl16, 20),
+													   new Rule(Category.GCD, dl48, 8),
+													   new Rule(Category.SQUARE_NUMBER_ENDING_IN_5, dl48, 8),
+//																new Rule(Category.FACTORIAL, dl48, 8),
+			});
+			Composition c3 = new Composition(new Rule[]{
+													   new Rule(Category.SQUARE_NUMBER_ENDING_IN_5, dl16, 8),
+			});
 
-
-			final int COUNT = 10;
+//			Composition c11 = Composition.create(new Rule(Category.MULTIPLICATION_BY_5, dl16, 8));
 
 			Exam[] exams = {
+//						   new Exam(Composition.create(new Rule(Category.GCD, dl16, 20))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_5, dl16, 8))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_25, dl16, 8))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_11, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_11, dl32, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_11, dl48, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_12, dl16, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_12, dl32, 8))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_12, dl48, 8))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_BY_101, dl32, 8))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_SLIGHTLY_GREATER_THAN_100, dl16, 8))),
 //						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_SLIGHTLY_LESS_THAN_100, dl16, 8))),
 //						   new Exam(Composition.create(new Rule(Category.ARABIC_TO_ROMAN, dl32, 8))),
 //						   new Exam(Composition.create(new Rule(Category.SQUARE, dl32, 8))),
-						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl16, COUNT * 3))),
-						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl32, COUNT * 3))),
-						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl48, COUNT * 3))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl16, COUNT * 3))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl32, COUNT * 3))),
+//						   new Exam(Composition.create(new Rule(Category.MULTIPLICATION_FOIL, dl48, COUNT * 3))),
 
 //						   new Exam(COUNT, new Level16(), Category.ARABIC_TO_ROMAN),
 //						   new Exam(COUNT, new Level48(), Category.PRIME_NUMBER),
@@ -109,7 +125,14 @@ public class Driver {
 
 //						   new Exam(composition16),
 //						   new Exam(composition32),
-//						   new Exam(composition48)
+//						   new Exam(composition48),
+						   new Exam(c1),
+						   new Exam(c1),
+						   new Exam(c1),
+						   new Exam(c3),
+						   new Exam(c3),
+						   new Exam(c3),
+						   new Exam(c2)
 			};
 
 

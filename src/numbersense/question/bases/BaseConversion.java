@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author George Chen
  * @since 11/2/12 10:49 PM
  */
-public class BaseConversion extends Question {
+abstract public class BaseConversion extends Question {
 
 	public static String convertFromBase10(int decimalValue, int baseTo) {
 		assert (decimalValue >= 0);
@@ -30,15 +30,10 @@ public class BaseConversion extends Question {
 		return number;
 	}
 
-	private WholeNumber value;
-	private WholeNumber baseOfQuestion;
-	private WholeNumber baseOfAnswer;
+	protected WholeNumber value;
+	protected WholeNumber baseOfQuestion;
+	protected WholeNumber baseOfAnswer;
 
-
-	@Override
-	public Category getCategory() {
-		return Category.BASE_CONVERSION;
-	}
 
 	@Override
 	public Solution getSolution() {
@@ -50,19 +45,4 @@ public class BaseConversion extends Question {
 		return QuestionDescription.create(convertFromBase10(value.getValue(), baseOfQuestion.getValue()));
 	}
 
-	private void initialize() {
-
-	}
-
-	public void visit(Level16 level) {
-		//TODO
-	}
-
-	public void visit(Level32 level) {
-		//TODO
-	}
-
-	public void visit(Level48 level) {
-		//TODO
-	}
 }

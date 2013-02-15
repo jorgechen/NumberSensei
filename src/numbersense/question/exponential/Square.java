@@ -16,7 +16,7 @@ import numbersense.utility.Randomizer;
  * @since 12/18/11 6:11 PM
  */
 public class Square extends Question {
-	private ExponentialExpression exponentialExpression;
+	protected ExponentialExpression exponentialExpression;
 
 	protected void initialize(int upperBound) {
 		int base = Randomizer.random1toN(upperBound);

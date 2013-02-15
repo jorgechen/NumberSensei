@@ -2,13 +2,17 @@ package numbersense.exam;
 
 import numbersense.exam.level.DifficultyLevel;
 import numbersense.question.Question;
+import numbersense.question.bases.Base2And4;
 import numbersense.question.bases.BaseConversion;
 import numbersense.question.exponential.Square;
+import numbersense.question.exponential.SquareNumberEndingIn5;
+import numbersense.question.factors.GCD;
 import numbersense.question.memorization.PrimeNumber;
 import numbersense.question.memorization.RomanNumeral;
 import numbersense.question.memorization.RomanNumeralFromArabic;
 import numbersense.question.multiplication.*;
 import numbersense.question.other.OrderOfOperation;
+import numbersense.question.probability.Factorial;
 
 /**
  * Each exam comprises a set of problems.
@@ -78,8 +82,18 @@ public class Exam {
 	public static Question createQuestion(DifficultyLevel level, Category category) {
 		Question question;
 		switch (category) {
-		case BASE_CONVERSION:
-			question = new BaseConversion();
+
+		case GCD:
+			question = new GCD();
+			break;
+		case SQUARE_NUMBER_ENDING_IN_5:
+			question = new SquareNumberEndingIn5();
+			break;
+		case FACTORIAL:
+			question = new Factorial();
+			break;
+		case BASE_2_AND_4:
+			question = new Base2And4();
 			break;
 		case PRIME_NUMBER:
 			question = new PrimeNumber();
@@ -101,6 +115,9 @@ public class Exam {
 			break;
 		case MULTIPLICATION_BY_12:
 			question = new MultiplicationBy12();
+			break;
+		case MULTIPLICATION_BY_NUMBER_BETWEEN_12_AND_19:
+			question = new MultiplicationByNumberBetween12And19();
 			break;
 		case MULTIPLICATION_BY_101:
 			question = new MultiplicationBy101();
